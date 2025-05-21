@@ -6,4 +6,4 @@
 
 - 🌐 [다국어 지원](./i18n_data.md)
 - 🛠️ [ORM 사용 (With SqlAlchemy)](./orm.md)
-- 🧭 [로그인 기능의 시작](./token_check.md)
+- 🔐 [Google 로그인 도입기: 사용자 피드백으로 시작된 변화](./token_check.md)
