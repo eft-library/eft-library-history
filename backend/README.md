@@ -5,8 +5,5 @@
 
 ## 📂 목록
 
-- 🎨 [UI 개발 (Frontend)](./frontend/README.md)
-- ⚙️ [API 개발 (Backend)](./backend/README.md)
-- 📡 [실시간 데이터 처리 (Kafka)](./kafka/README.md)
-- ⏱️ [스케줄링 및 배치 (Airflow)](./airflow/README.md)
-- 🏗️ [인프라 구축 (NAS, Ubuntu 기반)](./infra/README.md)
+- 🌐 [다국어 지원](./i18n_data.md)
+- 🛠️ [ORM 사용 (With SqlAlchemy)](./orm.md)

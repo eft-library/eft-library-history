@@ -6,7 +6,7 @@
 - ⏱️ [스케줄링 및 배치 (Airflow)](../airflow/README.md)
 - 🏗️ [인프라 구축 (NAS, Ubuntu 기반)](../infra/README.md)
 
-# ORM 사용 With SqlAlchemy
+# 🛠️ ORM 사용 (With SqlAlchemy)
 
 이 프로젝트는 **FastAPI와 SQLAlchemy ORM을 처음으로 도입**하여 사용해본 프로젝트 입니다.
 
