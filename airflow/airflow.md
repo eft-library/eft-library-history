@@ -204,3 +204,104 @@ export CONSTRAINT_URL=https://raw.githubusercontent.com/apache/airflow/constrain
 ```
 
 # Ubuntu 22.04.5 LTS 버전에 Airflow 설치하기
+
+Ubuntu 에서는 Nas와 다르게 Docker Image로 한번에 설치했습니다.
+
+Nas를 사용할 때는 환경변수 입력 방법을 몰라서 하지 못했었는데, 사용하면서 어느정도 숙달이 되니 눈에 보이게 되면서 할 수 있게 되었습니다.
+
+## 방화벽 해제 및 Git clone
+
+UI를 사용할 port를 외부에서 접속할 수 있게 열어줍니다.
+
+```shell
+# 방화벽 해제 및 확인
+sudo ufw allow 13003
+sudo ufw status
+
+# Git clone
+mkdir /home/airflow
+git clone airflow_project_link
+
+# data dump 폴더 생성
+mkdir /home/airflow/latest_data
+
+# 권한 부여
+chmod -R 777 /home/airflow
+```
+
+# Airflow 설치
+
+yaml을 Pull 해줍니다.
+
+```shell
+# yaml 설치
+docker pull apache/airflow:latest-python3.9
+
+# yaml 수정
+docker run -d \
+  --name airflow \
+  -p '바꿀port':8080 \
+  -v /home/airflow:/opt/airflow \
+  -e AIRFLOW_UID=50000 \
+  -e AIRFLOW_GID=0 \
+  -e AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/eft-library-airflow/dags \
+  -e AIRFLOW__CORE__DEFAULT_TIMEZONE=Asia/Seoul \
+  -e AIRFLOW__CORE__EXECUTOR=LocalExecutor \
+  -e AIRFLOW__CORE__LOAD_EXAMPLES=False \
+  -e AIRFLOW__CORE__PLUGINS_FOLDER=/opt/airflow/eft-library-airflow/plugins \
+  -e AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://user:password@192.168.219.102:dbport/airflow_meta \
+  -e AIRFLOW__WEBSERVER__RBAC=True \
+  -e AIRFLOW__WEBSERVER__SECRET_KEY=$(openssl rand -hex 32) \
+  -e _AIRFLOW_WWW_USER_USERNAME=root \
+  -e _AIRFLOW_WWW_USER_PASSWORD=password \
+  apache/airflow:latest-python3.9 \
+  bash -c "airflow db migrate && airflow webserver"
+
+# -v 는 공유 디렉토리 설정으로 data dump시 docker에 접속하는게 아닌 ubuntu 환경에서 편하게 받기 위한 설정 입니다.
+
+# LocalExecutor를 사용한 이유는 Stand-alone 환경이기에 선택했습니다.
+
+# 나머지 설정을 입력합니다.
+```
+
+> 마지막에 **bash -c "airflow db migrate && airflow webserver" 명령어를 추가**해 바로 실행하게 해줍시다 - **하지 않을 경우 컨테이너가 바로 종료** 됩니다.
+
+이제 접속후 Airflow를 설정해줍시다.
+
+```shell
+# container 접속
+docker exec -it --user root '컨테이너 아이디' /bin/bash
+
+# airflow 유저 생성
+airflow users create \
+    --username user \
+    --password password \
+    --firstname FirstName \
+    --lastname LastName \
+    --role Admin \
+    --email user@gmail.com
+
+# 추가를 했다면 터미널을 나와 Ubuntu로 돌아온 뒤 스케줄러를 백그라운드로 실행해줍니다.
+docker exec -d airflow airflow scheduler
+```
+
+## PG Dump 설정하기 (pgpass)
+
+PostgreSQL 데이터를 Dump 뜨기 위해 Airflow Dag를 만들어도 권한 문제와 비밀번호를 묻는 것이 나와서 막히게 됩니다.
+
+Airflow Dag를 실행하는 주체는 Docker의 Container이니 내부에서 .pgpass를 설정하여 비밀번호를 묻지 않게 설정해줘야 합니다.
+
+```shell
+# container 접속
+docker exec -it --user root '컨테이너 아이디' /bin/bash
+
+# pgpass 작성
+cd /home/airflow
+echo "192.168.219.102:dbport:db:user:password" >> ~/.pgpass
+chmod 600 /home/airflow/.pgpass
+
+# test
+pg_dump -h 192.168.219.102 -p dbport -U user --inserts db > /opt/airflow/latest_data/test_backup.sql
+```
+
+이렇게 하면 모든 설정이 완료 됩니다.
