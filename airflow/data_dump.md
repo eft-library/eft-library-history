@@ -72,9 +72,3 @@ def remove_old_file_script():
 
     return "find /opt/airflow/latest_data -type f -mtime +3 -delete"
 ```
-
-## 🧩 추후 수정할 것
-
-현재는 DB 덤프 파일의 **용량이 10MB 미만**으로 작기 때문에,
-
-추출된 데이터를 **이메일로 자동 전송하는 기능**을 추후에 추가할 예정입니다.
