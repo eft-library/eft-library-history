@@ -269,8 +269,14 @@ docker run -d \
 이제 접속후 Airflow를 설정해줍시다.
 
 ```shell
-# container 접속
+# container 접속 및 패키지 업데이트
 docker exec -it --user root '컨테이너 아이디' /bin/bash
+apt update
+apt upgrade -y
+
+# DB와 연결 테스트
+apt install net-tools -y
+nc -zv 192.168.219.102 dbport
 
 # airflow 유저 생성
 airflow users create \
@@ -294,6 +300,9 @@ Airflow Dag를 실행하는 주체는 Docker의 Container이니 내부에서 .pg
 ```shell
 # container 접속
 docker exec -it --user root '컨테이너 아이디' /bin/bash
+
+# postgresql 드라이버 설치
+apt install postgresql-client
 
 # pgpass 작성
 cd /home/airflow
