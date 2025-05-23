@@ -255,7 +255,7 @@ docker run -d \
   -e _AIRFLOW_WWW_USER_USERNAME=root \
   -e _AIRFLOW_WWW_USER_PASSWORD=password \
   apache/airflow:latest-python3.9 \
-  bash -c "airflow db migrate && airflow webserver"
+  bash -c "airflow db migrate && airflow webserver --host 0.0.0.0"
 
 # -v 는 공유 디렉토리 설정으로 data dump시 docker에 접속하는게 아닌 ubuntu 환경에서 편하게 받기 위한 설정 입니다.
 
