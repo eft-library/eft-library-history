@@ -17,6 +17,10 @@ pg_dump 명령어를 사용하며, **터미널 명령을 직접 실행하는 방
 
 이 설정은 **Docker 기반으로 Airflow를 구축한 상태를 전제**로 합니다.
 
+**2025/05/26**
+
+현재 날짜 기준으로 dump 후 파일 압축 및 메일로 전송이 추가 되었습니다.
+
 # PG_DUMP 설정
 
 ```shell
@@ -35,7 +39,7 @@ chmod 600 /home/airflow/.pgpass
 pg_dump -h 192.168.219.102 -p 11111 -U user --inserts db > /opt/airflow/latest_data/test_backup.sql
 ```
 
-Airflow 작성하기
+**Airflow Custom Function**
 
 ```python
 def get_today():
@@ -72,4 +76,73 @@ def remove_old_file_script():
     """
 
     return "find /opt/airflow/latest_data -type f -mtime +3 -delete"
+
+def compress_backup_script(file_path: str):
+    """
+    백업된 .sql 파일을 gzip으로 압축
+    """
+    return f"gzip -f {file_path}"
+```
+
+**Airflow Dag**
+
+```python
+def choose_branch(**kwargs):
+    task_instance = kwargs["ti"]
+    bash_return_code = task_instance.xcom_pull(task_ids="data_dump")
+    if bash_return_code == "0":
+        return "compress_backup"
+    else:
+        return "failure_task"
+
+
+today = get_today()
+backup_file_path = f"/opt/airflow/latest_data/{today}_backup.sql"
+compressed_file_path = f"{backup_file_path}.gz"
+
+with DAG(
+    dag_id="dags_data_dump",
+    schedule="50 0 * * *",
+    start_date=pendulum.datetime(2021, 1, 1, tz="Asia/Seoul"),
+    catchup=False,
+    dagrun_timeout=datetime.timedelta(minutes=60),
+    tags=["postgresql", "data_dump"],
+) as dag:
+
+    data_dump_task = BashOperator(
+        task_id="data_dump",
+        bash_command=dump_script(),
+        do_xcom_push=True,
+    )
+
+    branch_task = BranchPythonOperator(
+        task_id="branch_task",
+        python_callable=choose_branch,
+    )
+
+    compress_backup = BashOperator(
+        task_id="compress_backup",
+        bash_command=compress_backup_script(backup_file_path),
+    )
+
+    success_task = BashOperator(
+        task_id="success_task",
+        bash_command=remove_old_file_script(),
+    )
+
+    send_email = EmailOperator(
+        task_id="send_email",
+        to=["poeynus@gmail.com"],
+        subject=f"✅ {today} PostgreSQL 데이터 Dump 완료",
+        html_content=f"<p>{today} 백업 파일이 성공적으로 생성되어 첨부되었습니다.</p>",
+        files=[compressed_file_path],
+        conn_id="smtp_gmail",
+    )
+
+    failure_task = DummyOperator(task_id="failure_task")
+
+    # DAG 흐름 정의
+    data_dump_task >> branch_task
+    branch_task >> compress_backup >> success_task >> send_email
+    branch_task >> failure_task
 ```
