@@ -43,11 +43,9 @@
 
 ![스크린샷 2025-05-21 오전 9 20 51](https://github.com/user-attachments/assets/6cf84d60-7e56-43da-a59a-07cee0da86f0)
 
-
 **수정**
 
 ![스크린샷 2025-05-26 오후 1 51 02](https://github.com/user-attachments/assets/ab62b0c6-9980-45b0-a3bc-2a041b0105b7)
-
 
 ## ✉️ 이메일 설정 방법
 
@@ -97,15 +95,15 @@ DAG 실행 결과, 의도한 대로 데이터가 정상적으로 Dump되고, 이
 
 간단한 주기적 Health Check 로직을 작성하여 적용하였습니다.
 
-## 주의할 점
+## ⚠️ 주의할 점
 
-해당 스크립트는 실행 후 문제가 있을 경우 메일로 내용을 보내야 합니다.
+해당 스크립트는 실행 후 문제가 발생할 경우 이메일로 오류 내용을 전송해야 합니다.
 
-그러니 주기적 스케줄링 설정을 crontab이 아닌 Airflow를 사용해야 합니다.
+메일기능을 이용하기 위해서는 단순히 crontab으로 주기 실행을 설정하는 것은 적절하지 않습니다.
 
-한가지 문제는 Airflow는 Docker container 에 띄워져 있기에 접근할 수 있는 방법이 다릅니다.
+Airflow는 Docker Container 내부에서 실행되므로, 외부에서 접근하려면 별도의 IP 및 포트 설정 정보가 필요합니다.
 
-그러므로 ip 관련 접속 정보를 남깁니다.
+제가 설정했던 IP 접속 방식을 남깁니다.
 
 **Airflow Container 패키지 설치**
 
@@ -120,7 +118,7 @@ apt-get install jq
 
 Airflow: localhost
 
-나머지 서비스: 192 아이피
+나머지 서비스: 192 아이피 - Ubuntu와 동일(docker를 설치한 환경)
 
 ## Health Check 목록 및 방식
 
