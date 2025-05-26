@@ -42,8 +42,10 @@
 **기존**
 ![스크린샷 2025-05-21 오전 9 20 51](https://github.com/user-attachments/assets/6cf84d60-7e56-43da-a59a-07cee0da86f0)
 
+
 **수정**
 ![스크린샷 2025-05-26 오후 1 51 02](https://github.com/user-attachments/assets/ab62b0c6-9980-45b0-a3bc-2a041b0105b7)
+
 
 ## ✉️ 이메일 설정 방법
 
