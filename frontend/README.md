@@ -4,4 +4,4 @@
 
 # 📂 구성 항목
 
-- 🎨 [UI 개발 (작성중입니다.)](./frontend/README.md)
+- 🎗️ [폐지된 커뮤니티 기능](./community.md)
