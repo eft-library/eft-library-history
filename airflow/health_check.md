@@ -40,10 +40,14 @@
 이에 따라, 최우선 과제로 개선 작업을 진행했습니다.
 
 **기존**
+
 ![스크린샷 2025-05-21 오전 9 20 51](https://github.com/user-attachments/assets/6cf84d60-7e56-43da-a59a-07cee0da86f0)
 
+
 **수정**
+
 ![스크린샷 2025-05-26 오후 1 51 02](https://github.com/user-attachments/assets/ab62b0c6-9980-45b0-a3bc-2a041b0105b7)
+
 
 ## ✉️ 이메일 설정 방법
 
@@ -60,6 +64,8 @@ Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에�
 
 **Conn Type Email**
 
+![스크린샷 2025-05-26 오후 2 19 38](https://github.com/user-attachments/assets/8b4408b8-e66f-4ec9-86be-3bdda86761a0)
+
 ## 📎 데이터 첨부하여 이메일 전송
 
 초기에는 설정이 올바른데도 불구하고 "Connection Refused" 에러가 지속적으로 발생했습니다.
@@ -75,11 +81,15 @@ Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에�
 
 **파일 용량 / 압축 용량**
 
+![스크린샷 2025-05-26 오후 2 21 41](https://github.com/user-attachments/assets/43ffc4a8-9fdd-4305-ab55-d13a3901beb9)
+
 ## ✅ DAG 결과 확인
 
 DAG 실행 결과, 의도한 대로 데이터가 정상적으로 Dump되고, 이메일로 전송된 후, 4일 뒤 삭제되는 전체 흐름이 정상적으로 작동함을 확인했습니다.
 
 **이메일 결과**
+
+![스크린샷 2025-05-26 오후 2 24 26](https://github.com/user-attachments/assets/12e21b7b-5a6a-4509-bd76-54f5b3d1b7a3)
 
 # 🩺 내부 서비스 Health Check 구축
 
