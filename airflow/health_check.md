@@ -242,4 +242,8 @@ check_npm_health
 
 **대시보드**
 
+![스크린샷 2025-05-27 오전 8 26 15](https://github.com/user-attachments/assets/4d84e52a-a167-4238-86de-5235d7a2b71d)
+
 **Notification Test**
+
+![스크린샷 2025-05-27 오전 8 26 02](https://github.com/user-attachments/assets/3d86e744-d1bb-4992-9a19-e2fe9772b461)
