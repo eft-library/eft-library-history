@@ -5,6 +5,7 @@
 - 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
 - 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
 - 📦 [Data Dump 자동화 설정](./data_dump.md)
+- 🐹 [시스템 Health Check 구축](./health_check.md)
 
 # 🪤 Airflow 구축하기 (Nas, Ubuntu)
 
