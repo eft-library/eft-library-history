@@ -70,8 +70,65 @@
 - **중복 조회 방지를 위해 `localStorage` 사용**
 - 조회 이력이 없는 경우에만 FastAPI에 요청하여 조회수 증가
 
-🔗 자세한 내용:  
-[LocalStorage와 연계한 조회수 기능(작성중)](./community.md)
+```js
+import { MAX_UUID_COUNT, LOCAL_STORAGE_KEY } from "@/util/consts/libraryConsts";
+import { useEffect } from "react";
+import USER_API_ENDPOINTS from "@/config/userEndPoints";
+import { useSession } from "next-auth/react";
+
+export default function useViewCount(boardId: string, boardType: string) {
+  const { data: session } = useSession();
+  useEffect(() => {
+    const addBoardViewCount = async () => {
+      try {
+        const res = await fetch(`${USER_API_ENDPOINTS.ADD_BOARD_VIEW_COUNT}`, {
+          method: "POST",
+          headers: {
+            Authorization:
+              session && session.accessToken
+                ? `Bearer ${session.accessToken}`
+                : "Bearer ",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            board_id: boardId,
+            board_type: boardType,
+          }),
+        });
+        const response = await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (boardId && session) {
+      // 로컬 스토리지에서 UUID 목록 가져오기
+      const storedUuids =
+        JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+
+      // 새로 들어온 board_id가 이미 목록에 존재하는지 확인
+      if (!storedUuids.includes(boardId)) {
+        // UUID 목록이 10만 개를 초과할 경우 목록을 비움
+        if (storedUuids.length >= MAX_UUID_COUNT) {
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
+        }
+
+        // 새로운 게시판 id 추가
+        const updatedUuids = [
+          ...(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []),
+          boardId,
+        ];
+
+        // 업데이트된 UUID 목록을 로컬 스토리지에 저장
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedUuids));
+
+        // 조회수 통신
+        addBoardViewCount();
+      }
+    }
+  }, [boardId]);
+}
+```
 
 ---
 
@@ -79,9 +136,55 @@
 
 - **사용자 인증은 Header에 담긴 JWT Token으로 처리**합니다.
 - 게시글 작성자와 Token 정보가 일치할 경우에만 수정/삭제 가능합니다.
+- react-quill을 Custom 하여 사용했습니다.
 
-🔗 자세한 내용:  
-[작성, 수정, 삭제(작성중)](./community.md)
+**이미지 처리**
+
+게시글 내용중 이미지를 클릭할 경우 확대하여 보여주고 싶었습니다.
+
+Click Event를 감지하여 해당 html tag가 img인 경우 Modal과 연계하여 표출해주었습니다.
+
+```js
+export default function ImgWithZoom({ content }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const handleImageClick = (event) => {
+    const img = event.target;
+    if (img.tagName === "IMG") {
+      setSelectedImage(img.src);
+      onOpen();
+    }
+  };
+
+  return (
+    <>
+      <Text
+        className="ql-editor"
+        dangerouslySetInnerHTML={{ __html: content }}
+        onClick={handleImageClick}
+      />
+      <Modal isOpen={isOpen} onClose={onClose} size="xl">
+        <ModalOverlay />
+        <ModalContent
+          bg={ALL_COLOR.EDITOR_IMAGE_SHADOW}
+          maxW="80vw"
+          minW="20vw"
+        >
+          <ModalBody>
+            <Image
+              src={selectedImage}
+              w={"100%"}
+              alt="Selected Image"
+              objectFit="contain"
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+```
 
 ---
 
@@ -91,12 +194,33 @@
 
 신고 요청 예시:
 
-```json
-POST /api/board/report
-{
-"post_id": 123,
-"reason": "욕설 포함"
-}
+```js
+const reportPost = async () => {
+  try {
+    let finalReason = "";
+    if (selectReson !== "other") {
+      finalReason = selectReson;
+    } else {
+      finalReason = reason;
+    }
+
+    const response = await fetchUserData(
+      USER_API_ENDPOINTS.REPORT_POST,
+      "POST",
+      { board_id: post.id, board_type: post.type, reason: finalReason },
+      session
+    );
+    if (response.status === 200) {
+      alert("해당 게시글이 신고되었습니다.");
+      onClose();
+    } else {
+      alert("잠시후 다시 시도해주세요");
+      onClose();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 ```
 
 ---
@@ -130,9 +254,10 @@ POST /api/board/report
 
 - 댓글에 **이모티콘 기능은 꼭 넣고 싶었던 요소**였습니다.
 - 댓글을 보다 **다채롭고 유쾌하게 만드는 효과**가 있다고 판단하였습니다.
+- 기존에는 textarea를 통한 입력을 받았었는데, 이모티콘요소를 추가하기 위해서 게시글 작성과 동일한 react-quill을 사용했습니다.
+- 만들고나니 생각한 대로 나오긴 했는데 댓글이 마치 작은 게시글 처럼 동영상, 이미지 등 너무 많은 자유도가 생겨버렸습니다.
 
-🔗 자세한 내용:  
-[댓글과 이모티콘](./community.md)
+> 추후에 개발하게 된다면, 이모티콘만 넣을수 있게 Custom 해서 적용할 예정입니다.
 
 ---
 
