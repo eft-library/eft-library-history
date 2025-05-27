@@ -1,6 +1,7 @@
 # 📂 목록
 
 - 🎗️ [폐지된 커뮤니티 기능](./community.md)
+- 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
 
 ---
 
@@ -64,7 +65,6 @@
 **Issue Table**
 
 <img width="503" alt="board_issue" src="https://github.com/user-attachments/assets/b2f74b8d-7000-4c46-8b1d-3ff8f6f57754" />
-
 
 ---
 
