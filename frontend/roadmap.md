@@ -3,7 +3,7 @@
 - 🎗️ [폐지된 커뮤니티 기능](./community.md)
 - 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
 - 👍 [로드맵 - 최고의 컨텐츠](./roadmap.md)
-- 🍱 [다국어 지원을 위여](./i18n.md)
+- 🍱 [다국어 지원을 위하여](./i18n.md)
 
 ---
 
@@ -20,7 +20,6 @@
 **Quest Roadmap**
 
 <img width="1050" alt="roadmap" src="https://github.com/user-attachments/assets/c9460567-86bc-4083-8285-78f5ade0a223" />
-
 
 ---
 
@@ -67,7 +66,7 @@
 ## 🖼️ 상태 예시
 
 **초기 상태**
-  
+
 <img width="852" alt="default" src="https://github.com/user-attachments/assets/ec23dc53-56d5-4a84-826e-ad333d818789" />
 
 **활성화 상태**
