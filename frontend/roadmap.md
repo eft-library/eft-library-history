@@ -16,6 +16,11 @@
 > **사용 기술**: `react-xyflow`  
 > **성과**: 매우 만족스러운 사용자 반응
 
+**Quest Roadmap**
+
+<img width="1050" alt="roadmap" src="https://github.com/user-attachments/assets/c9460567-86bc-4083-8285-78f5ade0a223" />
+
+
 ---
 
 ## 💡 개발 동기
@@ -60,9 +65,17 @@
 
 ## 🖼️ 상태 예시
 
-- **초기 상태**
-- **활성화 상태**
-- **비활성화 상태**
+**초기 상태**
+  
+<img width="852" alt="default" src="https://github.com/user-attachments/assets/ec23dc53-56d5-4a84-826e-ad333d818789" />
+
+**활성화 상태**
+
+<img width="844" alt="check" src="https://github.com/user-attachments/assets/0d169faf-c685-42b7-b98d-e4e5cbfac4aa" />
+
+**비활성화 상태**
+
+<img width="832" alt="uncheck" src="https://github.com/user-attachments/assets/0038462a-539f-4f43-baae-2fe29ac15e88" />
 
 ---
 
