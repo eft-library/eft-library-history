@@ -91,13 +91,13 @@
 
 신고 요청 예시:
 
-\`\`\`json
+```json
 POST /api/board/report
 {
 "post_id": 123,
 "reason": "욕설 포함"
 }
-\`\`\`
+```
 
 ---
 
