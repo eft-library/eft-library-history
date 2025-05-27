@@ -35,7 +35,9 @@
 - `Forum`
 - `Question`
 
-> 📷 _Tip 카테고리 테이블 구조 이미지 (추후 삽입)_
+**Tip Table**
+
+<img width="488" alt="board_schema" src="https://github.com/user-attachments/assets/8b0baf7c-e66f-4df3-aa21-d2120403f26a" />
 
 ---
 
@@ -59,7 +61,10 @@
 - 사용자에게는 **인기글 전용 페이지** 또는 **인기글 필터**로 제공합니다.
 - **Airflow를 통해 1시간 주기로 통계 산출**
 
-> 📷 _인기글 UI 이미지 (추후 삽입)_
+**Issue Table**
+
+<img width="503" alt="board_issue" src="https://github.com/user-attachments/assets/b2f74b8d-7000-4c46-8b1d-3ff8f6f57754" />
+
 
 ---
 
@@ -222,6 +227,10 @@ const reportPost = async () => {
   }
 };
 ```
+
+**Report Table**
+
+<img width="507" alt="board_report" src="https://github.com/user-attachments/assets/2aa596e8-9f41-4874-ade5-39894731e1f9" />
 
 ---
 
