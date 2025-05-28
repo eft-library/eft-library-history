@@ -36,15 +36,14 @@
   - 다양한 국가의 사용자들이 사용하기에 Google OAuth는 범용적이고 접근성이 좋습니다.
   - 실제로 인증 흐름이 단순해지고 관리가 쉬워졌으며, 결과적으로 **좋은 선택**이었다고 판단했습니다.
 - Google의 경우 Token을 받아야 하는데, 첫 로그인시만 Token을 건네주고 Refresh Token을 발급할 때는 Token을 주지 않았습니다.
-  - grant_type: "refresh_token" 옵션을 주어서 해결했습니다.
+  - `grant_type: "refresh_token"` 옵션을 주어서 해결했습니다.
 
 ---
 
 ## 해결 과정과 학습
 
 - 공식 문서(https://next-auth.js.org/)를 꼼꼼히 참고하며 설정을 하나씩 진행.
-- 각각의 provider에 필요한 설정값 (`clientId`, `clientSecret`, `profile`, `authorization`) 등을  
-  `authOptions`에 맞게 구성하면서 점점 이해도가 높아짐.
+- 각각의 provider에 필요한 설정값 (`clientId`, `clientSecret`, `profile`, `authorization`) 등을 구성하면서 점점 이해도가 높아짐.
 - 결국에는 **두 provider 모두 정상 동작**하도록 설정을 마무리했고,  
   이후부터는 다른 provider를 추가하거나 사용자 세션을 활용하는 데 큰 어려움이 없었음.
 
