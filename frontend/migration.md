@@ -199,14 +199,14 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
 
 - 사이트 이용이 활발해지고 사용자 피드백이 많아지면서 전체적인 리팩토링과 보수가 필요하다는 점을 실감했습니다.
 - 이 기회에 최신 버전인 **React 19와 Next.js 15로 업그레이드**를 진행했습니다.
-  - RSC 최적화, React Compiler 등 새로운 기능 도입을 위한 준비 목적도 있었습니다.
 - 그 과정에서 과거에 "SSG 기반으로 만들었다"고 생각했던 코드들이 사실상 대부분 CSR로 동작하고 있다는 사실을 명확히 인지하게 되었습니다.
-  - `useEffect`로 데이터를 fetch하거나 동적으로 import한 부분들이 많았기 때문입니다.
+  - `useEffect`로 데이터를 fetch하거나 동적으로 import한 부분들이 많았습니다.
+  - Client Side와 Server Side를 제대로 구분하여 설계하지 않았습니다.
 
 ### ⚠️ 현재의 이슈
 
 - 전역 상태 관리를 위해 사용 중인 `zustand`가 아직 React 19를 정식으로 지원하지 않아, 개발 중 콘솔에 warning이 출력되고 있습니다.
-- 다른 상태 관리 라이브러리(e.g. Recoil, Jotai, Redux Toolkit 등)로의 전환을 검토 중입니다.
+- 사용하는데 큰 문제는 없어 라이브러리를 변경할 생각은 없고, 빨리 업데이트가 되길 기다리고 있습니다.
 
 ---
 
