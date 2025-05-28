@@ -1,4 +1,4 @@
-![analytics](https://github.com/user-attachments/assets/cfcdc44d-0fc6-4cee-8075-bf6622fd6c58)# 📂 목록
+# 📂 목록
 
 - 🎗️ [폐지된 커뮤니티 기능](./community.md)
 - 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
