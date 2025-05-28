@@ -5,6 +5,7 @@
 - 👍 [로드맵 - 최고의 컨텐츠](./roadmap.md)
 - 🍱 [다국어 지원을 위하여](./i18n.md)
 - 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
+- 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
 
 # 🎨 디자인 리뉴얼 이슈 및 요청
 
