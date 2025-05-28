@@ -52,7 +52,8 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 
 **Google Search Console**
 
-![console](https://github.com/user-attachments/assets/1cf247cf-9d79-4dfb-870c-c25b7a9d8652)
+![스크린샷 2025-05-28 오전 9 33 31](https://github.com/user-attachments/assets/b9343f94-deac-4d1f-b1b8-ca94137589a1)
+
 
 ## 색인(Indexing) 문제
 
@@ -60,6 +61,10 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 - 사이트 운영 경험이 부족한 상태에서 색인 요청을 **무분별하게 진행**한 것이 원인 중 하나로 추정 하고 있습니다.
 - 초기에는 사이트 내에서 `query parameter`를 사용하여 **아이템 바로 가기 기능**을 제공했고,  
   이를 sitemap에 포함시켜 **불필요한 페이지들까지 색인** 되어버렸습니다.
+
+**Sitemap.xml**
+
+![스크린샷 2025-05-28 오전 9 24 12](https://github.com/user-attachments/assets/fbc86e71-0f0d-4513-9bec-11ade93116a3)
 
 ## 🔄 해결을 위한 조치
 
@@ -71,10 +76,6 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 
 - 색인 수가 **초기에 500개까지 증가했다가**,  
   이후 **10개 정도로 급감**하였습니다.
-
-**Sitemap.xml**
-
-![스크린샷 2025-05-28 오전 9 24 12](https://github.com/user-attachments/assets/fbc86e71-0f0d-4513-9bec-11ade93116a3)
 
 
 ## 📌 현재 고민
