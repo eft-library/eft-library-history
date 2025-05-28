@@ -98,7 +98,7 @@ export const useLoadMap = (map_three_path: string, isMap: boolean) => {
 - 현재까지도 해당 방식을 **안정적으로 사용 중**이며,  
   성능과 유지보수 측면에서 매우 만족스러운 결과를 얻고 있습니다.
 
-**테두리 옵션**
+**조명 옵션**
 
 ```js
 <pointLight position={[0, 0, 0]} intensity={2} />
