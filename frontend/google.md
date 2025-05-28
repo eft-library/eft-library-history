@@ -1,4 +1,4 @@
-# 📂 목록
+![analytics](https://github.com/user-attachments/assets/cfcdc44d-0fc6-4cee-8075-bf6622fd6c58)# 📂 목록
 
 - 🎗️ [폐지된 커뮤니티 기능](./community.md)
 - 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
@@ -18,6 +18,8 @@
 - 별다른 이슈 없이 **바로 적용 및 데이터 수집 성공** 했습니다.
 
 **Google Analytics**
+
+![analytics](https://github.com/user-attachments/assets/1c77a1e9-c3ed-4a4f-96c3-a33832b23829)
 
 ---
 
@@ -48,6 +50,10 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 - Google Analytics 와 비슷하게 도입 자체는 간단 합니다.  
   마찬가지로 `@next/third-parties`를 통해 생성된 코드를 적용하여 바로 사용 가능합니다.
 
+**Google Search Console**
+
+![console](https://github.com/user-attachments/assets/1cf247cf-9d79-4dfb-870c-c25b7a9d8652)
+
 ## 색인(Indexing) 문제
 
 - **사이트 색인이 제대로 되지 않는 문제** 발생했습니다.
@@ -66,7 +72,10 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 - 색인 수가 **초기에 500개까지 증가했다가**,  
   이후 **10개 정도로 급감**하였습니다.
 
-**Google Search Console**
+**Sitemap.xml**
+
+![스크린샷 2025-05-28 오전 9 24 12](https://github.com/user-attachments/assets/fbc86e71-0f0d-4513-9bec-11ade93116a3)
+
 
 ## 📌 현재 고민
 
