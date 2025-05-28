@@ -10,3 +10,4 @@
 - 🍱 [다국어 지원을 위하여](./i18n.md)
 - 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
 - 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
+- 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)

@@ -6,6 +6,7 @@
 - 🍱 [다국어 지원을 위하여](./i18n.md)
 - 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
 - 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
+- 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
 
 ---
 
@@ -54,7 +55,6 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 
 ![스크린샷 2025-05-28 오전 9 33 31](https://github.com/user-attachments/assets/b9343f94-deac-4d1f-b1b8-ca94137589a1)
 
-
 ## 색인(Indexing) 문제
 
 - **사이트 색인이 제대로 되지 않는 문제** 발생했습니다.
@@ -76,7 +76,6 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 
 - 색인 수가 **초기에 500개까지 증가했다가**,  
   이후 **10개 정도로 급감**하였습니다.
-
 
 ## 📌 현재 고민
 
