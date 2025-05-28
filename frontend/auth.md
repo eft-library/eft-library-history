@@ -43,9 +43,8 @@
 ## 해결 과정과 학습
 
 - 공식 문서(https://next-auth.js.org/)를 꼼꼼히 참고하며 설정을 하나씩 진행.
-- 각각의 provider에 필요한 설정값 (`clientId`, `clientSecret`, `profile`, `authorization`) 등을 구성하면서 점점 이해도가 높아짐.
-- 결국에는 **두 provider 모두 정상 동작**하도록 설정을 마무리했고,  
-  이후부터는 다른 provider를 추가하거나 사용자 세션을 활용하는 데 큰 어려움이 없었음.
+- 각각의 provider에 필요한 설정값 (`clientId`, `clientSecret`, `profile`, `authorization`) 등을 구성하면서 점점 이해도가 높아졌습니다.
+- 결국에는 **두 provider 모두 정상 동작**하도록 설정을 마무리했고, 이후부터는 사용자 세션을 활용하는 데 큰 어려움이 없었습니다.
 
 ---
 
