@@ -10,3 +10,4 @@
 - 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
 - 📦 [Data Dump 자동화 설정](./data_dump.md)
 - 🐹 [시스템 Health Check 구축](./health_check.md)
+- 🧠 [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
