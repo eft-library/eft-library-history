@@ -122,6 +122,9 @@ GRANT SELECT, INSERT, CREATE, UPDATE, DELETE, TRUNCATE, DROP ON prd.* TO test;
 
 초창기에 작성하여 적용한 버전입니다.
 
+<details>
+<summary style="font-weight: bold">Kafka Code</summary>
+
 **config.py**
 
 ```python
@@ -303,3 +306,5 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+</details>

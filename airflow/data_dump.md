@@ -85,7 +85,8 @@ def compress_backup_script(file_path: str):
     return f"gzip -f {file_path}"
 ```
 
-**Airflow Dag**
+<details>
+<summary style="font-weight: bold">Dag Code</summary>
 
 ```python
 def choose_branch(**kwargs):
@@ -147,3 +148,5 @@ with DAG(
     branch_task >> compress_backup >> success_task >> send_email
     branch_task >> failure_task
 ```
+
+</details>

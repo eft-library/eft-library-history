@@ -4,6 +4,8 @@
 - 🚀 [ClickHouse와 PostgreSQL 비교 및 테이블 설계](./clickhouse_postgresql.md)
 - 📊 [대시보드 성능 테스트](./dashboard.md)
 
+# 아직 데이터를 쌓고 있습니다!!
+
 # 📊 대시보드 성능 테스트
 
 ClickHouse와 PostgreSQL 중 ClickHouse를 중심으로,  
@@ -27,7 +29,7 @@ ClickHouse와 PostgreSQL 중 ClickHouse를 중심으로,
   | ② 전체 요청 수 (기간 기준)                       | → 상단 중앙에 큰 숫자    |
   | ③ 시간대별 요청 분포 (시간 단위)                 | → Heatmap 또는 Histogram |
 
-> 📌 현재는 데이터가 충분히 쌓이지 않아서 보류 중입니다.  
+> 📌 현재는 데이터가 충분히 쌓이지 않아서 보류 중입니다.
 
 ---
 

@@ -53,6 +53,9 @@
 
 현재 적용중인 코드 이며 Refresh Token까지 적용한 상태입니다.
 
+<details>
+<summary style="font-weight: bold">Route Code</summary>
+
 ```js
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from "next-auth";
@@ -189,6 +192,8 @@ const handler = NextAuth({
 export { handler as GET, handler as POST };
 
 ```
+
+</details>
 
 ## ✅ 회고 및 요약
 

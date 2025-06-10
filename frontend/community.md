@@ -54,8 +54,6 @@
 - 싫어요는 별도 저장하지 않고, **좋아요 수를 감소시키는 방식**으로 처리합니다.
 - **싫어요 개수는 UI에 표시하지 않습니다.** (사용자 반감을 줄이기 위함)
 
-> 📷 _게시글 UI 이미지 (추후 삽입)_
-
 ---
 
 ## 🔥 인기글 시스템
@@ -285,6 +283,9 @@ const reportPost = async () => {
 
 > 구현 이후 쿼리가 복잡해지는 문제로 인해 다음에는 유지보수가 더 쉬운 구조로 새롭게 만들 예정입니다.
 
+<details>
+<summary style="font-weight: bold">댓글 조회 쿼리</summary>
+
 ```python
     def get_comment_query():
         """
@@ -379,6 +380,8 @@ const reportPost = async () => {
             {where_clause}
             """
 ```
+
+</details>
 
 # 개발, 운영, 끝
 

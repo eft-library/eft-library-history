@@ -145,6 +145,11 @@ Airflow: localhost
 
 ## 내부 서비스 Health Check 구현 스크립트
 
+현재 적용중인 스크립트 정보 입니다.
+
+<details>
+<summary style="font-weight: bold">Health Check Script</summary>
+
 ```shell
 #!/bin/bash
 
@@ -226,6 +231,8 @@ check_airflow_health
 check_npm_health
 
 ```
+
+</details>
 
 # 🌐 외부 접속 서비스 Health Check
 

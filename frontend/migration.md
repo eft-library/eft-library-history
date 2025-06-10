@@ -43,7 +43,8 @@
   - 예를 들어, 아이템 필터 로직이 main과 sub로 나뉘어 있었는데 구조가 비슷해 대충 구현했더니, TypeScript 적용 후 에러가 쏟아졌습니다.
   - 타입 정의를 정리하고, 잘못된 함수 로직을 재작성하는 데 상당한 시간이 소요됐습니다.
 
-**완성된 ItemFilter Hook**
+<details>
+<summary style="font-weight: bold">Item Filter Hook</summary>
 
 ```js
 /**
@@ -184,6 +185,8 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
   return { viewItemList, onClickItem, onClickAllItem };
 };
 ```
+
+</details>
 
 ### 📉 후일담
 

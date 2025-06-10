@@ -42,6 +42,11 @@ FastAPI + SQLAlchemy 환경에서 **ORM만으로 처리하기 어려운 복합 �
 
 ORM의 한계로 인해 해당 부분은 `text -> execute()` 방식으로 전환하였습니다.
 
+> 아이템 상세의 경우 성능 개선을 위하여 item_detail_i18n 테이블을 만들어, airflow를 통해 적재를 진행 한 후 조회를 하는 상태로 변경 되었습니다.
+
+<details>
+<summary style="font-weight: bold">아이템 상세 조회 쿼리</summary>
+
 ```python
 
 @staticmethod
@@ -257,3 +262,5 @@ SELECT *
 FROM item_with_details
 """
 ```
+
+</details>
