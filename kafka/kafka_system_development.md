@@ -123,7 +123,15 @@ GRANT SELECT, INSERT, CREATE, UPDATE, DELETE, TRUNCATE, DROP ON prd.* TO test;
 초창기에 작성하여 적용한 버전입니다.
 
 <details>
-<summary style="font-weight: bold">Kafka Code</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Kafka Code</summary>
 
 **config.py**
 

@@ -44,7 +44,15 @@
   - 타입 정의를 정리하고, 잘못된 함수 로직을 재작성하는 데 상당한 시간이 소요됐습니다.
 
 <details>
-<summary style="font-weight: bold">Item Filter Hook</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Item Filter Hook</summary>
 
 ```js
 /**

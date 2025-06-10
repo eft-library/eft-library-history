@@ -54,7 +54,15 @@
 현재 적용중인 코드 이며 Refresh Token까지 적용한 상태입니다.
 
 <details>
-<summary style="font-weight: bold">Route Code</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Route Code</summary>
 
 ```js
 /* eslint-disable @typescript-eslint/no-explicit-any */

@@ -86,7 +86,15 @@ def compress_backup_script(file_path: str):
 ```
 
 <details>
-<summary style="font-weight: bold">Dag Code</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Dag Code</summary>
 
 ```python
 def choose_branch(**kwargs):

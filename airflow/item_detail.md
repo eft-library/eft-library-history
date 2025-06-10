@@ -29,7 +29,15 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 **하나의 JSON 형태로 상세 정보를 반환**하는 목적의 쿼리입니다.
 
 <details>
-<summary style="font-weight: bold">기존 사용 쿼리</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">기존 사용 쿼리</summary>
 
 ```sql
             WITH target_item AS (SELECT *
@@ -330,7 +338,15 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
    - 예: `reward_elem -> 'item' ->> 'id'` 같은 방식은 **인덱스를 사용할 수 없음**.
 
 <details>
-<summary style="font-weight: bold">Explain 결과</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Explain 결과</summary>
 
 ```txt
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -491,7 +507,15 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 - 테스트를 충분히 하고 데이터를 철저히 검증했어야 했는데, 처음엔 쿼리를 전체 실행하지 않고 단순히 LIMIT 500으로만 확인해서 문제가 없는 줄 알았습니다. 그런데 다음 offset 구간에서 데이터에 문제가 있다는 걸 뒤늦게 알게 됐습니다.
 
 <details>
-<summary style="font-weight: bold">문제 원인</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">문제 원인</summary>
 
 ```sql
 -- 예시 문제 쿼리 영역
@@ -662,7 +686,15 @@ https://github.com/user-attachments/assets/30ed75af-9ed6-4b8e-bb64-6332a7341c19
 현재 적용중인 아이템 상세 Dynamic Task 코드 입니다.
 
 <details>
-<summary style="font-weight: bold">Dag Code</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Dag Code</summary>
 
 ```python
 from airflow.decorators import dag, task
@@ -732,7 +764,15 @@ dag = item_detail_upsert()
 현재 사용중인 아이템 상세 upsert query 입니다.
 
 <details>
-<summary style="font-weight: bold">Upsert Query</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">Upsert Query</summary>
 
 ```sql
 INSERT INTO item_detail_i18n (id,

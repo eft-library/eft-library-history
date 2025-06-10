@@ -45,7 +45,15 @@ ORM의 한계로 인해 해당 부분은 `text -> execute()` 방식으로 전환
 > 아이템 상세의 경우 성능 개선을 위하여 item_detail_i18n 테이블을 만들어, airflow를 통해 적재를 진행 한 후 조회를 하는 상태로 변경 되었습니다.
 
 <details>
-<summary style="font-weight: bold">아이템 상세 조회 쿼리</summary>
+<summary style="
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  ">아이템 상세 조회 쿼리</summary>
 
 ```python
 
