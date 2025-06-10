@@ -284,15 +284,7 @@ const reportPost = async () => {
 > 구현 이후 쿼리가 복잡해지는 문제로 인해 다음에는 유지보수가 더 쉬운 구조로 새롭게 만들 예정입니다.
 
 <details>
-<summary style="
-    font-weight: bold;
-    background-color: #f0f8ff;
-    color: #003366;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  ">댓글 조회 쿼리</summary>
+<summary>🔍 <strong>댓글 조회 쿼리</strong></summary>
 
 ```python
     def get_comment_query():

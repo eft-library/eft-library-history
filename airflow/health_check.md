@@ -148,15 +148,7 @@ Airflow: localhost
 현재 적용중인 스크립트 정보 입니다.
 
 <details>
-<summary style="
-    font-weight: bold;
-    background-color: #f0f8ff;
-    color: #003366;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  ">Health Check Script</summary>
+<summary>🔍 <strong>🔍 <strong>Health Check Script</strong></summary>
 
 ```shell
 #!/bin/bash
