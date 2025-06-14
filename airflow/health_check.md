@@ -24,7 +24,7 @@
 
 또한, 원인을 파악하기 전까지는 SSD 고장으로 인해 데이터가 모두 손실되었을 가능성을 우려하며 큰 불안을 겪었습니다.
 
-장애 복구 후, 이러한 상황에 빠르게 대응하기 위해서는 서버 상태를 실시간으로 모니터링할 수 있는 시스템이 필요하다는 점을 절실히 느꼈고, 이후 직접 점검 시스템을 개발하게 되었습니다.
+이후 장애 복구 후, 서버 상태를 실시간으로 모니터링할 수 있는 시스템 필요성을 절실히 느꼈고 점검 시스템을 개발하게 되었습니다.
 
 - DB Data Dump후 Email로 전송 기능 - 기존에는 dump만 진행
 - 내부 시스템 Health Check - 신규 기능
@@ -46,10 +46,9 @@
 
 ![스크린샷 2025-05-26 오후 1 51 02](https://github.com/user-attachments/assets/ab62b0c6-9980-45b0-a3bc-2a041b0105b7)
 
-**통계용 DB 적재 task 추가**
+**서비스 상태 및 응답시간 적재 Task 추가 (사이트 통계)**
 
 ![스크린샷 2025-06-15 083945](https://github.com/user-attachments/assets/2d967165-eb7a-4903-9b28-69b85fbc4e16)
-
 
 ## ✉️ 이메일 설정 방법
 
@@ -132,8 +131,10 @@ Airflow: localhost
 
     - NextJS
         - Health Check API 개발 - /api/health
+        - 서비스 응답 시간 Check
     - FastAPI
         - Health Check API 개발 - /api/news/health
+        - 서비스 응답 시간 Check
     - Kafka
         - topic 살아 있는지 확인
     - PostgreSQL
@@ -260,3 +261,167 @@ check_npm_health
 **Notification Test**
 
 ![스크린샷 2025-05-27 오전 8 26 02](https://github.com/user-attachments/assets/3d86e744-d1bb-4992-9a19-e2fe9772b461)
+
+---
+
+## Health Check Dag 코드
+
+현재 적용중인 Health Check 코드입니다.
+
+<details>
+<summary><strong>🔍 <strong>Dag Code</strong></summary>
+
+```python
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from contextlib import closing
+from custom_module.psql_func import read_sql
+from airflow.operators.email import EmailOperator
+from airflow.operators.empty import EmptyOperator
+from airflow.utils.dates import days_ago
+from datetime import datetime
+import time
+import os
+import requests
+
+log_path = "/opt/airflow/health_check/logs/health_check.log"
+
+default_args = {
+    "owner": "airflow",
+    "email_on_failure": False,
+    "retries": 0,
+}
+
+with DAG(
+    dag_id="dags_health_check",
+    default_args=default_args,
+    schedule_interval="*/5 * * * *",
+    start_date=days_ago(1),
+    catchup=False,
+    tags=["health", "monitoring"],
+) as dag:
+
+    # 1. health_check.sh 실행
+    run_health_check = BashOperator(
+        task_id="run_health_check",
+        bash_command="""
+        bash /opt/airflow/health_check/health_check.sh
+        """,
+    )
+
+
+    def measure_response_time(postgres_conn_id, **kwargs):
+        services = {
+            "Next.js": "http://a/health",
+            "FastAPI": "http://b/health",
+        }
+
+        postgres_hook = PostgresHook(postgres_conn_id)
+        sql = read_sql("insert_response_time.sql")
+
+        with closing(postgres_hook.get_conn()) as conn:
+            with closing(conn.cursor()) as cursor:
+                for service_name, url in services.items():
+                    start = time.time()
+                    try:
+                        r = requests.get(url, timeout=10)
+                        elapsed = time.time() - start
+                    except Exception:
+                        elapsed = None  # 실패 시 NULL 처리
+
+                    cursor.execute(sql, (service_name, elapsed, datetime.now()))
+            conn.commit()
+
+
+    def save_health_check(postgres_conn_id, **kwargs):
+        if not os.path.exists(log_path):
+            return
+
+        postgres_hook = PostgresHook(postgres_conn_id)
+        sql = read_sql("insert_health_check.sql")
+
+        with closing(postgres_hook.get_conn()) as conn:
+            with closing(conn.cursor()) as cursor:
+                with open(log_path, "r") as f:
+                    for line in f:
+                        if not line.strip():
+                            continue
+
+                        print(line)
+                        try:
+                            parts = line.strip().split('] ')
+                            timestamp_str = parts[0].strip('[')
+                            log_body = parts[1]
+                            service_name, status = log_body.split(': ')
+                            checked_at = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+
+                            cursor.execute(sql, (service_name.strip(), status.strip(), checked_at))
+                        except Exception as e:
+                            # 에러 로깅 (옵션)
+                            print(f"Error parsing line: {line} -> {e}")
+
+                conn.commit()
+
+    # 2. 로그 내용 검사 (FAIL 포함 여부)
+    def check_fail_in_log(**kwargs):
+        if os.path.exists(log_path):
+            with open(log_path) as f:
+                content = f.read()
+                if "FAIL" in content:
+                    return "prepare_email_body"
+        return "success_action"
+
+    # 3. 실패한 경우: 로그 내용을 읽어 XCom으로 전달
+    def prepare_email_content(**kwargs):
+        ti = kwargs["ti"]
+        if os.path.exists(log_path):
+            with open(log_path) as f:
+                content = f.read()
+                html_content = f"<pre>{content}</pre>"
+                ti.xcom_push(key="email_body", value=html_content)
+
+    check_log_result = BranchPythonOperator(
+        task_id="check_log_result",
+        python_callable=check_fail_in_log,
+    )
+
+    save_to_postgres = PythonOperator(
+        task_id="save_to_postgres",
+        python_callable=save_health_check,
+        op_kwargs={"postgres_conn_id": "tkl_db"},
+    )
+
+    prepare_email_body = PythonOperator(
+        task_id="prepare_email_body",
+        python_callable=prepare_email_content,
+    )
+
+    measure_response_time_task = PythonOperator(
+        task_id="measure_response_time",
+        python_callable=measure_response_time,
+        op_kwargs={"postgres_conn_id": "tkl_db"},
+    )
+
+    # 4. 이메일 전송 (FAIL이 있을 때만 실행됨)
+    send_email = EmailOperator(
+        task_id="send_email",
+        to=["poeynus@gmail.com"],
+        cc=["b@gmail.com", "a@gmail.com"],
+        subject="🚨 EFT Library 서비스에 문제가 생겼습니다.",
+        html_content="{{ task_instance.xcom_pull(task_ids='prepare_email_body', key='email_body') }}",
+        conn_id="smtp_gmail",
+    )
+
+    # 5. 성공 시 아무 것도 안 함
+    success_action = EmptyOperator(task_id="success_action")
+
+    # DAG 연결
+    run_health_check >> save_to_postgres >> measure_response_time_task >> check_log_result
+    check_log_result >> prepare_email_body >> send_email
+    check_log_result >> success_action
+
+```
+
+</details>
