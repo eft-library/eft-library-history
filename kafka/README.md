@@ -6,4 +6,3 @@
 
 - 🛠️ [Kafka 환경 구축](./kafka_system_development.md)
 - 🚀 [ClickHouse와 PostgreSQL 비교 및 테이블 설계](./clickhouse_postgresql.md)
-- 📊 [대시보드 성능 테스트](./dashboard.md)

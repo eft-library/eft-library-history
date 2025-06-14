@@ -8,6 +8,7 @@
 - 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
 - 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
 - 🛠️ [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
+- 🚀 [사이트 통계 대시보드 개발기](./dashboard.md)
 
 ---
 
