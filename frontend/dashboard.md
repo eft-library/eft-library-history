@@ -21,6 +21,10 @@
 
 **사용자 통계**
 
+![스크린샷 2025-06-15 081657](https://github.com/user-attachments/assets/b244a60f-9a10-4a3e-93d0-e6ca5067622e)
+![스크린샷 2025-06-15 081704](https://github.com/user-attachments/assets/22c76fc9-6c00-4164-afe1-d137d11b3388)
+
+
 <br />
 
 ## ✅ 데이터 수집 방식
