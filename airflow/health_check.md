@@ -46,6 +46,11 @@
 
 ![스크린샷 2025-05-26 오후 1 51 02](https://github.com/user-attachments/assets/ab62b0c6-9980-45b0-a3bc-2a041b0105b7)
 
+**통계용 DB 적재 task 추가**
+
+![스크린샷 2025-06-15 083945](https://github.com/user-attachments/assets/2d967165-eb7a-4903-9b28-69b85fbc4e16)
+
+
 ## ✉️ 이메일 설정 방법
 
 Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에서 airflow.cfg를 수정하라고 안내하지만,
