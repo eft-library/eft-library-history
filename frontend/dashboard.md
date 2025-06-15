@@ -31,11 +31,13 @@
 API 호출 로그는 **Kafka**를 통해 스트리밍 처리되어 데이터 웨어하우스로 적재되며,  
 자세한 Kafka 처리 과정은 아래 GitHub 저장소에서 확인하실 수 있습니다.
 
-🔗 GitHub: [eft-library-history - Kafka 처리 구조](https://github.com/eft-library/eft-library-history/tree/main/kafka)
+🔗 GitHub: [Kafka 환경 구축](https://github.com/eft-library/eft-library-history/blob/main/kafka/kafka_system_development.md)
 
-서비스 상태는 기존에 Airflow를 통해서 5분마다 점검하는 것이 있었는데, 결과를 DB에 적재하는 부분을 추가했습니다.
+서비스 상태는 기존에 Airflow를 통해 5분마다 점검하고 있었으며, 여기에 점검 결과와 각 서비스의 평균 응답 시간을 측정하여 DB에 적재하는 기능을 추가했습니다.
 
-평균 응답 시간은 각 서비스의 health를 호출하여 시간을 측정하여 DB에 적재하고 있습니다.
+평균 응답 시간은 각 서비스의 health endpoint를 호출하여 측정됩니다.
+
+🔗 GitHub: [시스템 Health Check 구축](https://github.com/eft-library/eft-library-history/blob/main/airflow/health_check.md)
 
 <br />
 
