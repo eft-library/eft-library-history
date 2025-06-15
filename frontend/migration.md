@@ -194,6 +194,11 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
 - SEO 개선을 위해 SSG 방식으로 구축했지만, 실제로는 대부분의 화면이 CSR 방식으로 렌더링되고 있다는 것을 나중에야 알게 됐습니다.
 - `LightHouse` 점수는 좋아졌지만, **사용자 입장에서 SSG의 체감 효과는 크지 않았고**, SSG 설계가 제대로 되지 않았다는 것을 3차 마이그레이션에서 알게 되었습니다.
 
+**build 정보**
+
+![스크린샷 2024-12-30 오전 9 17 43](https://github.com/user-attachments/assets/e2126699-91bf-4d63-b244-778e1904576c)
+
+
 ---
 
 ## 🔁 3차 마이그레이션 (React 19 + Next.js 15 + 패키지 최신화)
@@ -211,6 +216,10 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
 
 - 전역 상태 관리를 위해 사용 중인 `zustand`가 아직 React 19를 정식으로 지원하지 않아, 개발 중 콘솔에 warning이 출력되고 있습니다.
 - 사용하는데 큰 문제는 없어 라이브러리를 변경할 생각은 없고, 빨리 업데이트가 되길 기다리고 있습니다.
+
+**build 정보**
+
+![스크린샷 2025-06-16 오전 8 10 18](https://github.com/user-attachments/assets/0c76885b-b1e5-45e2-a798-7cd7590494b5)
 
 ---
 
