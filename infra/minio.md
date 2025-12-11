@@ -106,7 +106,7 @@ chmod +x mc
 ./mc --version
 
 # 서버 등록
-./mc alias set myminio http://127.0.0.1:9000 tkl TKL@2635!
+./mc alias set myminio http://127.0.0.1:9000 admin password
 
 # 연결 테스트
 ./mc ls myminio
@@ -147,6 +147,14 @@ EOF
 
 # 확인
 ./mc anonymous get myminio/eftlibrary
+
 ```
 
 이후 다시 접속해보면 Public으로 변경된 것을 알 수 있습니다.
+
+# 외부 Upload 활성화 하기
+
+기존에는 Access Key, Secret Key를 사용하여서 했는데 이제는 사라졌고 로그인 시 사용하는 아이디와 패스워드를 사용하면 됩니다.
+
+아직 패키지는 변경된 것 같지 않은데, Access Key 에 아이디를 넣고, Secret Key에 Password를 넣으면 됩니다.
+
