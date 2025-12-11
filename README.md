@@ -32,3 +32,4 @@
   - 🧠 [아이템 상세 페이지 성능 튜닝 후기](./airflow/item_detail.md)
 - 🏗️ [인프라 구축 (Rocky Linux 10)](./infra/README.md)
   - [Minio 구축하기 (Nas, Ubuntu)](./infra/minio.md)
+  - [ClickHouse 구축하기](./infra/clickhouse.md)

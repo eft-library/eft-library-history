@@ -1,6 +1,7 @@
 # 📂 목록
 
 - [Minio 구축하기](./minio.md)
+- [ClickHouse 구축하기](./clickhouse.md)
 
 # Minio 구축하기
 

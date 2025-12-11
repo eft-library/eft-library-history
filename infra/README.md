@@ -5,3 +5,4 @@
 # 📂 구성 항목
 
 - [Minio 구축하기](./minio.md)
+- [ClickHouse 구축하기](./clickhouse.md)
