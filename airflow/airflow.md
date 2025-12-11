@@ -276,10 +276,17 @@ DB와 Mail 커넥션을 설정했습니다.
 
 아래 사진에 정보를 입력하면 됩니다.
 
+<img width="864" height="768" alt="스크린샷 2025-12-11 오전 10 17 49" src="https://github.com/user-attachments/assets/ea9ed63b-f023-4e1d-998d-64fbdf39a029" />
+
+
 ## Gmail Connection
 
 저는 메일의 경우 Gmail을 사용했는데, 다음과 같이 하면 됩니다.
 
 비밀번호는 [Gmail IMAP 생성](https://milkyspace.tistory.com/131) 여기를 보고 따라하시면 될 것 같습니다.
+
+<img width="884" height="692" alt="스크린샷 2025-12-11 오전 10 18 29" src="https://github.com/user-attachments/assets/3f997f8f-bb6a-4488-8a4e-a0f05876a0cc" />
+<img width="846" height="315" alt="스크린샷 2025-12-11 오전 10 18 48" src="https://github.com/user-attachments/assets/9a15d037-f751-4640-ac3c-7c42f6cdb127" />
+
 
 이렇게 하면 모든 설정이 완료 됩니다.
