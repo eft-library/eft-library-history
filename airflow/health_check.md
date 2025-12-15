@@ -30,6 +30,8 @@
 - 내부 시스템 Health Check - 신규 기능
 - 외부 접속 상태 Health Check - 신규 기능
 
+> Airflow 3.1.3 기준으로 내용 수정
+
 # ✅ DB Data Dump 후 이메일 전송 기능 개선
 
 기존에는 DB Data Dump 후 4일이 지나면 파일을 삭제하는 방식으로만 운영되고 있었습니다.
@@ -159,83 +161,76 @@ Airflow: localhost
 ```shell
 #!/bin/bash
 
-LOG_FILE="/opt/airflow/health_check/logs/health_check.log"
-TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+# =========================
+# 기본 설정
+# =========================
+LOG_FILE="/opt/airflow/latest_data/health_check.log"
+TIMEOUT=5
 
-rm -f "$LOG_FILE"
+# 로그 초기화
+: > "$LOG_FILE"
 
+# =========================
+# 로그 함수
+# =========================
 log() {
-    echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-check_http() {
-    local name=$1
-    local url=$2
-    if curl -sf "$url" > /dev/null; then
-        log "$name: OK"
-    else
-        log "$name: FAIL"
-    fi
+check() {
+  local name="$1"
+  local cmd="$2"
+
+  if timeout ${TIMEOUT}s bash -c "$cmd" >/dev/null 2>&1; then
+    log "✅ [OK]   ${name}"
+  else
+    log "❌ [FAIL] ${name}"
+  fi
 }
 
-check_postgres() {
-    if PGPASSWORD=pwd psql -U user -h psql_url -p 11111 -d db -c "SELECT 1;" > /dev/null 2>&1; then
-        log "PostgreSQL: OK"
-    else
-        log "PostgreSQL: FAIL"
-    fi
-}
+log "==================== Health Check Start ===================="
 
-check_clickhouse() {
-    if echo "SELECT 1;" | clickhouse-client --host house_url --port 1111 --user user --password pwd > /dev/null 2>&1; then
-        log "ClickHouse: OK"
-    else
-        log "ClickHouse: FAIL"
-    fi
-}
+# =========================
+# HTTP 서비스
+# =========================
+check "FastAPI" \
+  "curl -sf http://192.168.219.102:9022/api/news/health"
 
-check_kafka_topic() {
-    local BROKER="kafka_url:port"
-    local TOPIC="topic"
+check "NextJS" \
+  "curl -sf http://192.168.219.102:4002/api/health"
 
-    if kcat -b "$BROKER" -L 2>/dev/null | grep -q "topic \"$TOPIC\""; then
-        log "Kafka topic '${TOPIC}': OK"
-        return 0
-    else
-        log "Kafka topic '${TOPIC}': FAIL"
-        return 1
-    fi
-}
+check "ClickHouse" \
+  "curl -sf http://192.168.219.102:8123/ping"
 
-check_airflow_health() {
-    local url="http://airflow_url:port/health"
-    if curl -sf "$url" | jq -e '.metadatabase.status == "healthy" and .scheduler.status == "healthy"' > 2>/dev/null; then
-        log "Airflow API Health: OK"
-    else
-        log "Airflow API Health: FAIL"
-    fi
-}
+check "MinIO" \
+  "curl -sf http://192.168.219.102:9000/minio/health/live"
 
-check_npm_health() {
-    local url="http://npm_url:port"
-    if curl -sf "$url" > /dev/null; then
-        log "Nginx Proxy Manager Health: OK"
-    else
-        log "Nginx Proxy Manager Health: FAIL"
-    fi
-}
+# =========================
+# TCP 서비스
+# =========================
+check "Redis" \
+  "nc -z 192.168.219.102 6379"
 
-### 실행 부분 ###
-check_http "Next.js" "http://front_url:port/api/health"
-check_http "FastAPI" "http://back_url:port/api/news/health"
-check_http "MinIO" "http://minio_url:port/minio/health/live"
+check "Kafka" \
+  "nc -z 192.168.219.102 9092"
 
-check_postgres
-check_clickhouse
-check_kafka_topic
-check_airflow_health
-check_npm_health
+# =========================
+# Database
+# =========================
+check "PostgreSQL" \
+  "psql -U tkl -h 192.168.219.102 -p 13245 -d prd -c 'SELECT 1;'"
 
+# =========================
+# Docker 내부 서비스
+# =========================
+check "Nginx Proxy Manager" \
+  "curl -sf http://npm:81"
+
+check "Airflow API Server" \
+  "curl -sf http://airflow-airflow-apiserver-1:8080/api/v2/monitor/health"
+
+log "==================== Health Check End ======================"
+echo "" >> "$LOG_FILE"
 ```
 
 </details>
@@ -273,20 +268,34 @@ check_npm_health
 
 ```python
 from airflow import DAG
-from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.python import BranchPythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from contextlib import closing
 from custom_module.psql_func import read_sql
-from airflow.operators.email import EmailOperator
-from airflow.operators.empty import EmptyOperator
-from airflow.utils.dates import days_ago
-from datetime import datetime
+from airflow.providers.smtp.operators.smtp import EmailOperator
+from airflow.providers.standard.operators.empty import EmptyOperator
+from datetime import datetime, timezone
 import time
 import os
 import requests
+import re
 
-log_path = "/opt/airflow/health_check/logs/health_check.log"
+LOG_PATTERN = re.compile(
+    r"""
+    \[(?P<ts>[\d\-:\s]+)\]      # timestamp
+    \s+
+    (?:✅|❌)                   # emoji
+    \s+
+    \[(?P<status>OK|FAIL)\]    # status
+    \s+
+    (?P<service>.+)            # service name
+    """,
+    re.VERBOSE,
+)
+
+log_path = "/opt/airflow/latest_data/health_check.log"
 
 default_args = {
     "owner": "airflow",
@@ -297,8 +306,8 @@ default_args = {
 with DAG(
     dag_id="dags_health_check",
     default_args=default_args,
-    schedule_interval="*/5 * * * *",
-    start_date=days_ago(1),
+    schedule="*/5 * * * *",
+    start_date=datetime(2024, 1, 1, tzinfo=timezone.utc),
     catchup=False,
     tags=["health", "monitoring"],
 ) as dag:
@@ -307,15 +316,14 @@ with DAG(
     run_health_check = BashOperator(
         task_id="run_health_check",
         bash_command="""
-        bash /opt/airflow/health_check/health_check.sh
+        bash /opt/airflow/plugins/script/health_check.sh
         """,
     )
 
-
     def measure_response_time(postgres_conn_id, **kwargs):
         services = {
-            "Next.js": "http://a/health",
-            "FastAPI": "http://b/health",
+            "Next.js": "https://eftlibrary.com/health",
+            "FastAPI": "https://back.eftlibrary.com/health",
         }
 
         postgres_hook = PostgresHook(postgres_conn_id)
@@ -346,23 +354,22 @@ with DAG(
             with closing(conn.cursor()) as cursor:
                 with open(log_path, "r") as f:
                     for line in f:
-                        if not line.strip():
-                            continue
+                        match = LOG_PATTERN.search(line)
+                        if not match:
+                            continue  # START / END 등은 무시
 
-                        print(line)
-                        try:
-                            parts = line.strip().split('] ')
-                            timestamp_str = parts[0].strip('[')
-                            log_body = parts[1]
-                            service_name, status = log_body.split(': ')
-                            checked_at = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+                        checked_at = datetime.strptime(
+                            match.group("ts"), "%Y-%m-%d %H:%M:%S"
+                        ).replace(tzinfo=timezone.utc)
 
-                            cursor.execute(sql, (service_name.strip(), status.strip(), checked_at))
-                        except Exception as e:
-                            # 에러 로깅 (옵션)
-                            print(f"Error parsing line: {line} -> {e}")
+                        service_name = match.group("service").strip()
+                        status = match.group("status")
 
-                conn.commit()
+                        cursor.execute(
+                            sql,
+                            (service_name, status, checked_at),
+                        )
+            conn.commit()
 
     # 2. 로그 내용 검사 (FAIL 포함 여부)
     def check_fail_in_log(**kwargs):
@@ -407,18 +414,24 @@ with DAG(
     # 4. 이메일 전송 (FAIL이 있을 때만 실행됨)
     send_email = EmailOperator(
         task_id="send_email",
-        to=["poeynus@gmail.com"],
-        cc=["b@gmail.com", "a@gmail.com"],
+        to=["a@gmail.com"],
+        cc=["b@gmail.com", "c@gmail.com"],
         subject="🚨 EFT Library 서비스에 문제가 생겼습니다.",
         html_content="{{ task_instance.xcom_pull(task_ids='prepare_email_body', key='email_body') }}",
         conn_id="smtp_gmail",
+        from_email="a@gmail.com",
     )
 
     # 5. 성공 시 아무 것도 안 함
     success_action = EmptyOperator(task_id="success_action")
 
     # DAG 연결
-    run_health_check >> save_to_postgres >> measure_response_time_task >> check_log_result
+    (
+        run_health_check
+        >> save_to_postgres
+        >> measure_response_time_task
+        >> check_log_result
+    )
     check_log_result >> prepare_email_body >> send_email
     check_log_result >> success_action
 
