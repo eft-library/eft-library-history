@@ -2,6 +2,7 @@
 
 - [Minio 구축하기](./minio.md)
 - [ClickHouse 구축하기](./clickhouse.md)
+- [Redis 구축하기](./reids.md)
 
 # ClickHouse 구축하기
 

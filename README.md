@@ -31,6 +31,6 @@
   - 🐹 [시스템 Health Check 구축](./airflow/health_check.md)
   - 🧠 [아이템 상세 페이지 성능 튜닝 후기](./airflow/item_detail.md)
 - 🏗️ [인프라 구축 (Rocky Linux 10)](./infra/README.md)
-  - [Minio 구축하기 (Nas, Ubuntu)](./infra/minio.md)
+  - [Minio 구축하기](./infra/minio.md)
   - [ClickHouse 구축하기](./infra/clickhouse.md)
   - [Redis 구축하기](./infra/reids.md)
