@@ -33,3 +33,4 @@
 - 🏗️ [인프라 구축 (Rocky Linux 10)](./infra/README.md)
   - [Minio 구축하기 (Nas, Ubuntu)](./infra/minio.md)
   - [ClickHouse 구축하기](./infra/clickhouse.md)
+  - [Redis 구축하기](./infra/reids.md)
