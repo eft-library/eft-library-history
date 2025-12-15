@@ -100,31 +100,6 @@ DAG 실행 결과, 의도한 대로 데이터가 정상적으로 Dump되고, 이
 
 간단한 주기적 Health Check 로직을 작성하여 적용하였습니다.
 
-## ⚠️ 주의할 점
-
-해당 스크립트는 실행 후 문제가 발생할 경우 이메일로 오류 내용을 전송해야 합니다.
-
-메일기능을 이용하기 위해서는 단순히 crontab으로 주기 실행을 설정하는 것은 적절하지 않습니다.
-
-Airflow는 Docker Container 내부에서 실행되므로, 외부에서 접근하려면 별도의 IP 및 포트 설정 정보가 필요합니다.
-
-제가 설정했던 IP 접속 방식을 남깁니다.
-
-**Airflow Container 패키지 설치**
-
-```shell
-docker exec -u 0 -it 861824de8429 bash
-apt-get install clickhouse-client
-apt-get install -y kafkacat
-apt-get install jq
-```
-
-**접속 방식**
-
-Airflow: localhost
-
-나머지 서비스: 192 아이피 - Ubuntu와 동일(docker를 설치한 환경)
-
 ## Health Check 목록 및 방식
 
 점검하고자 하는 목록과 Health Check 방식입니다.
@@ -138,18 +113,20 @@ Airflow: localhost
         - Health Check API 개발 - /api/news/health
         - 서비스 응답 시간 Check
     - Kafka
-        - topic 살아 있는지 확인
+        - Port Alive Check
     - PostgreSQL
         - 접속 후 select 1 테스트
     - ClickHouse
-        - 접속 후 select 1 테스트
+        - Ping Pong Test
     - Docker
         - Airflow
-            - 제공해주는 api 테스트 - /health
+            - 제공해주는 api 테스트 - /api/v2/monitor/health
         - Nginx Proxy Manager
             - curl 테스트
     - Minio
         - 제공해주는 api 테스트 - /minio/health/live
+    - Redis
+        - Prot Alive Check
 
 ## 내부 서비스 Health Check 구현 스크립트
 
