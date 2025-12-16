@@ -22,6 +22,7 @@
 - 📡 [실시간 데이터 처리 (Kafka)](./kafka/README.md)
   - 🛠️ [Kafka 환경 구축](./kafka/kafka_system_development.md)
   - 🚀 [ClickHouse와 PostgreSQL 비교 및 테이블 설계](./kafka/clickhouse_postgresql.md)
+  - [사용자 방문 통계](./kafka/user_footprint.md)
 - ⏱️ [스케줄링 및 배치 (Airflow)](./airflow/README.md)
   - 🪤 [Airflow 3.1.5 구축하기](./airflow/airflow.md)
   - ⚠️ [데이터 불일치](./airflow/different_data.md)
