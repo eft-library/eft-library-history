@@ -166,5 +166,10 @@ def save_log_to_postgresql(conn, data):
 ## 결과
 
 사용자가 방문하면 consumer log에도 남고 DB에도 저장되는 것을 확인할 수 있습니다.
+<img width="1435" height="224" alt="스크린샷 2025-12-17 오전 8 26 53" src="https://github.com/user-attachments/assets/437bbbfc-0ff0-4805-b235-301d2206d3d7" />
+
+<img width="1095" height="386" alt="스크린샷 2025-12-17 오전 8 27 56" src="https://github.com/user-attachments/assets/0f6ae4a9-9f58-4c0b-b329-0d3c8781c90a" />
 
 그리고 이렇게 수집한 결과를 사용하여 사이트 통계를 만들고 있습니다.
+<img width="952" height="750" alt="스크린샷 2025-12-17 오전 8 29 10" src="https://github.com/user-attachments/assets/e95b5fb5-e84a-45a0-9b84-1c1a4b66a9c5" />
+
