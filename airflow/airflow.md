@@ -230,14 +230,15 @@ cd docker-airflow-fab
 vi Dockerfile
 
 # 여기서 부터는 내용 입력
-# 기존 Airflow 이미지를 기반으로 사용
 FROM apache/airflow:latest-python3.13
 
-# FAB provider 관련 패키지 설치 - 없으면 에러 남
-RUN pip install --no-cache-dir --user apache-airflow-providers-fab flask_appbuilder flask-session "connexion<3"
+ENV PIP_NO_CACHE_DIR=1
 
-# 다시 airflow 유저로 변경 (권장)
-USER ${AIRFLOW_UID:-50000}
+RUN pip install \
+    apache-airflow-providers-fab \
+    flask_appbuilder \
+    flask-session \
+    "connexion<3"
 ```
 
 ## Docker Compose UP
