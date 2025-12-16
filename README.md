@@ -23,7 +23,7 @@
   - 🛠️ [Kafka 환경 구축](./kafka/kafka_system_development.md)
   - 🚀 [ClickHouse와 PostgreSQL 비교 및 테이블 설계](./kafka/clickhouse_postgresql.md)
 - ⏱️ [스케줄링 및 배치 (Airflow)](./airflow/README.md)
-  - 🪤 [Airflow 3.1.3 구축하기](./airflow/airflow.md)
+  - 🪤 [Airflow 3.1.5 구축하기](./airflow/airflow.md)
   - ⚠️ [데이터 불일치](./airflow/different_data.md)
   - 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./airflow/i18n_mapping.md)
   - 🔹 [다국어 원천 데이터의 신뢰도 문제](./airflow/untranslated_data.md)

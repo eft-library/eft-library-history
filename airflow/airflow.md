@@ -1,6 +1,6 @@
 # 📂 목록
 
-- 🪤 [Airflow 3.1.3 구축하기](./airflow.md)
+- 🪤 [Airflow 3.1.5 구축하기](./airflow.md)
 - ⚠️ [데이터 불일치](./different_data.md)
 - 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
 - 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
@@ -33,12 +33,12 @@ chwon 50000:50000 -R /home/airflow
 
 > **저는 귀찮아서 777로 다 주었는데 이러시면 안됩니다...**
 
-# Airflow 3.1.3 설치
+# Airflow 3.1.5 설치
 
 Docker Image를 Pull 해줍니다. - 해당 버전은 Airflow 3.1.3 입니다.
 
 그리고 공식문서에서 docker-compose.yaml을 받아, 이를 기반으로 작성합니다.     
-[Docker YML 3.1.3 Link](https://airflow.apache.org/docs/apache-airflow/3.1.3/docker-compose.yaml)
+[Docker YML 3.1.5 Link](https://airflow.apache.org/docs/apache-airflow/3.1.5/docker-compose.yaml)
 
 ```shell
 # Image pull
