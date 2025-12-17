@@ -410,4 +410,6 @@ def process_notification_message(data):
 ## 결과
 
 이제 아이디 2개를 사용하여 연결이 잘 되었나 확인해보면 됩니다.
+https://github.com/user-attachments/assets/dce64424-9cb4-4edd-b95f-2818ad41037a
+
 
