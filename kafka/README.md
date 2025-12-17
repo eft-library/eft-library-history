@@ -4,6 +4,5 @@
 
 # 📂 목록
 
-- 🛠️ [Kafka 환경 구축](./kafka_system_development.md)
-- 🚀 [ClickHouse와 PostgreSQL 비교 및 테이블 설계](./clickhouse_postgresql.md)
+- [Kafka 환경 구축](./kafka_system_development.md)
 - [사용자 방문 통계](./user_footprint.md)

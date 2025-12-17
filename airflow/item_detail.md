@@ -1,16 +1,16 @@
 # 📂 목록
 
-- 🪤 [Airflow 3.1.5 구축하기](./airflow.md)
-- ⚠️ [데이터 불일치](./different_data.md)
-- 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
-- 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
-- 📦 [Data Dump 자동화 설정](./data_dump.md)
-- 🐹 [시스템 Health Check 구축](./health_check.md)
-- 🧠 [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
+- [Airflow 3.1.5 구축하기](./airflow.md)
+- [데이터 불일치](./different_data.md)
+- [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
+- [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
+- [Data Dump 자동화 설정](./data_dump.md)
+- [시스템 Health Check 구축](./health_check.md)
+- [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
 
-# 🧠 아이템 상세 페이지 성능 튜닝 후기
+# 아이템 상세 페이지 성능 튜닝 후기
 
-## 📌 개요
+## 개요
 
 아이템 상세 페이지 조회 시, 응답 시간이 너무 오래 걸리는 문제가 발생하였습니다.  
 기존 조회는 10초 이내로 끝났지만, 사용자 입장에서 체감상 충분히 불편할 수 있다고 판단하여 성능 개선 작업을 진행하게 되었습니다.
@@ -21,15 +21,15 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 
 ---
 
-## 📄 쿼리 설명 및 성능 분석
+## 쿼리 설명 및 성능 분석
 
-### ✅ 쿼리 목적
+### 쿼리 목적
 
 `item_i18n` 테이블을 기준으로 하여, 해당 아이템이 어떤 용도로 사용되는지 또는 어떤 보상으로 제공되는지를 파악하여  
 **하나의 JSON 형태로 상세 정보를 반환**하는 목적의 쿼리입니다.
 
 <details>
-<summary>🔍 <strong>🔍 <strong>기존 사용 쿼리</strong></summary>
+<summary><strong>🔍 <strong>기존 사용 쿼리</strong></summary>
 
 ```sql
             WITH target_item AS (SELECT *
@@ -312,7 +312,7 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 
 ---
 
-## 🚨 성능 이슈 원인 분석
+## 성능 이슈 원인 분석
 
 1. **`jsonb_array_elements` 사용**
 
@@ -457,7 +457,7 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 
 ---
 
-## ⚙ 실행 및 테스트
+## 실행 및 테스트
 
 성능 개선을 위해 쿼리를 수정한 뒤, 테스트를 진행하였습니다.
 
@@ -470,7 +470,7 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 
 ---
 
-## 🌀 Airflow 적용 및 배치 처리
+## Airflow 적용 및 배치 처리
 
 매일 아이템 데이터가 업데이트되므로, Airflow DAG를 통해 **상세 정보를 통계 낸 후 UPSERT 처리**하는 방식으로 리팩터링하였습니다.
 
@@ -483,7 +483,7 @@ https://github.com/user-attachments/assets/30fd5cf6-28f2-4333-bba0-1d5f299c1013
 
 ---
 
-## 🧯 문제 인지 및 원인
+## 문제 인지 및 원인
 
 - 특정 데이터가 잘못 들어가 있었고, 쿼리 자체에 문제가 있었음을 뒤늦게 인지하게 되었습니다.
 - 성능 병목은 아래와 같은 **문제 쿼리**에서 발생하였습니다
@@ -588,7 +588,7 @@ FROM item_with_details
 
 ![스크린샷 2025-06-10 오후 12 58 55](https://github.com/user-attachments/assets/27b7581a-b3e2-461c-9db7-7a39c1c16ca8)
 
-## ✅ 최종 개선 결과 요약
+## 최종 개선 결과 요약
 
 쿼리를 수정하여 올바르게 데이터를 쌓는것으로 수정한 뒤 병렬처리로 다시 진행하였고, 좋은 성능을 확인했습니다.
 
@@ -598,16 +598,16 @@ FROM item_with_details
   - 4200여 건 처리에 1시간 -> 30초 이내로 변경
   - 화면 렌더링 속도 10초 -> 3초 이내로 변경
 
-## 🧠 회고: 아이템 상세정보 성능 개선기
+## 회고: 아이템 상세정보 성능 개선기
 
-### 📌 배경
+### 배경
 
 - 복잡한 JSON 데이터를 파싱하여 아이템별 사용처/보상 정보를 종합 제공하는 쿼리가 필요
 - 초기에는 여러 CTE와 JSON 파싱을 사용하여 데이터를 구성
 
 ---
 
-### 🛠 문제점
+### 문제점
 
 - `jsonb_array_elements` 및 LATERAL JOIN의 과도한 사용 → 성능 저하
 - `LEFT JOIN ON TRUE` 등 무조건적인 조인으로 인해 불필요한 계산량 발생
@@ -618,7 +618,7 @@ FROM item_with_details
 
 ---
 
-### 🔍 원인 분석
+### 원인 분석
 
 - 쿼리 내 특정 필드 조건 누락으로 인해 **전체 데이터를 과하게 JOIN**하고 있었습니다.
 - 성능 병목의 주 원인이 **불필요한 조인**과 **필터 조건 부재**였습니다.
@@ -627,7 +627,7 @@ FROM item_with_details
 
 ---
 
-### ✅ 개선 및 결과
+### 개선 및 결과
 
 - 문제 구간의 쿼리를 수정 → 조건 추가 및 불필요한 JOIN 제거
 - 쿼리 Task 병렬 처리 수행
@@ -640,7 +640,7 @@ https://github.com/user-attachments/assets/30ed75af-9ed6-4b8e-bb64-6332a7341c19
 
 ---
 
-### 🤔 배운 점
+### 배운 점
 
 - 성능 이슈는 대부분 **쿼리 설계의 문제**에서 시작되었다는 점
 - **병렬 처리나 DAG 구성은 근본 원인 해결 후에 고려해야 할 보조 수단**이라는 점
@@ -650,14 +650,14 @@ https://github.com/user-attachments/assets/30ed75af-9ed6-4b8e-bb64-6332a7341c19
 
 ---
 
-### 📝 다음에는 제발~~
+### 다음에는 제발~~
 
 - JSON 필드는 가능하면 사전 정규화하거나, ETL 단계에서 파싱 처리하기
 - 복잡한 쿼리는 처음부터 성능 측정 후 설계하기
 - DAG 설계는 "성능 병목 제거 후" 도입하기
 - 쿼리는 꼭 여러번 확인하기
 
-### Dag Mapped Task Code
+### Dag Dynamic Task Code
 
 현재 적용중인 아이템 상세 Dynamic Task 코드 입니다.
 

@@ -1,14 +1,14 @@
 # 📂 목록
 
-- 🪤 [Airflow 3.1.5 구축하기](./airflow.md)
-- ⚠️ [데이터 불일치](./different_data.md)
-- 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
-- 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
-- 📦 [Data Dump 자동화 설정](./data_dump.md)
-- 🐹 [시스템 Health Check 구축](./health_check.md)
-- 🧠 [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
+- [Airflow 3.1.5 구축하기](./airflow.md)
+- [데이터 불일치](./different_data.md)
+- [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
+- [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
+- [Data Dump 자동화 설정](./data_dump.md)
+- [시스템 Health Check 구축](./health_check.md)
+- [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
 
-# 🪤 Airflow 3.1.3 구축하기
+# Airflow 3.1.3 구축하기
 
 Airflow는 24시간 실행되어야 하므로, 클라우드를 사용할 경우 지속적인 비용이 발생합니다. 이를 고려하여 **온프레미스 환경**에서 운영하는 것이 비용 면에서 더 유리하다고 판단했습니다.
 

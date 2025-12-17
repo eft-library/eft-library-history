@@ -1,23 +1,23 @@
 # 📂 목록
 
-- 🎗️ [폐지된 커뮤니티 기능](./community.md)
-- 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
-- 👍 [로드맵 - 최고의 컨텐츠](./roadmap.md)
-- 🍱 [다국어 지원을 위하여](./i18n.md)
-- 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
-- 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
-- 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
-- 🛠️ [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
-- 🚀 [사이트 통계 대시보드 개발기](./dashboard.md)
+- [폐지된 커뮤니티 기능](./community.md)
+- [디자인 리뉴얼 이슈 및 요청](./design.md)
+- [로드맵 - 최고의 컨텐츠](./roadmap.md)
+- [다국어 지원을 위하여](./i18n.md)
+- [3D Map 도입 및 성능 개선 과정](./3dmap.md)
+- [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
+- [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
+- [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
+- [사이트 통계 대시보드 개발기](./dashboard.md)
 
 ---
 
-# 🚀 사이트 통계 대시보드 개발기
+# 사이트 통계 대시보드 개발기
 
 사이트가 어느 정도 안정화됨에 따라 사용자 동향 및 사이트 주요 지표를 실시간으로 파악할 수 있는 **대시보드**를 개발하게 되었습니다.  
 본 대시보드는 운영 중인 다양한 서비스의 상태와 API 요청 현황을 한눈에 확인할 수 있도록 구성하였습니다.
 
-👉 실제 대시보드 확인: [https://eftlibrary.com/dashboard](https://eftlibrary.com/dashboard)
+실제 대시보드 확인: [https://eftlibrary.com/dashboard](https://eftlibrary.com/dashboard)
 
 **사용자 통계**
 
@@ -26,22 +26,22 @@
 
 <br />
 
-## ✅ 데이터 수집 방식
+## 데이터 수집 방식
 
 API 호출 로그는 **Kafka**를 통해 스트리밍 처리되어 데이터 웨어하우스로 적재되며,  
 자세한 Kafka 처리 과정은 아래 GitHub 저장소에서 확인하실 수 있습니다.
 
-🔗 GitHub: [Kafka 환경 구축](https://github.com/eft-library/eft-library-history/blob/main/kafka/kafka_system_development.md)
+GitHub: [Kafka 환경 구축](https://github.com/eft-library/eft-library-history/blob/main/kafka/kafka_system_development.md)
 
 서비스 상태는 기존에 Airflow를 통해 5분마다 점검하고 있었으며, 여기에 점검 결과와 각 서비스의 평균 응답 시간을 측정하여 DB에 적재하는 기능을 추가했습니다.
 
 평균 응답 시간은 각 서비스의 health endpoint를 호출하여 측정됩니다.
 
-🔗 GitHub: [시스템 Health Check 구축](https://github.com/eft-library/eft-library-history/blob/main/airflow/health_check.md)
+GitHub: [시스템 Health Check 구축](https://github.com/eft-library/eft-library-history/blob/main/airflow/health_check.md)
 
 <br />
 
-## 📊 주요 지표
+## 주요 지표
 
 대시보드는 다음과 같은 **6가지 핵심 지표**로 구성되어 있습니다:
 
@@ -172,7 +172,7 @@ ORDER BY service_name
 
 ---
 
-## 🛠️ 개발 후기
+## 개발 후기
 
 - DB에 데이터를 쌓는 시간이 UTC라서 약간 불편했습니다. 현재는 Asia/Seoul로 캐스팅 후 진행합니다.
 - Kafka와 Clickhouse 기반의 로그 수집 및 분석 구조를 설계하면서 **실시간 데이터 흐름에 대한 이해**가 높아졌습니다.
@@ -181,7 +181,7 @@ ORDER BY service_name
 
 ---
 
-## 🔍 앞으로의 계획
+## 앞으로의 계획
 
 - 사용자 행동 기반의 세부 분석 기능 추가
 - 특정 API 오류 정보 수집 하기 - 아직 별도로 수집하지 않고 있습니다.

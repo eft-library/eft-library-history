@@ -1,14 +1,14 @@
 # 📂 목록
 
-- 🪤 [Airflow 3.1.5 구축하기](./airflow.md)
-- ⚠️ [데이터 불일치](./different_data.md)
-- 🌐 [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
-- 🔹 [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
-- 📦 [Data Dump 자동화 설정](./data_dump.md)
-- 🐹 [시스템 Health Check 구축](./health_check.md)
-- 🧠 [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
+- [Airflow 3.1.5 구축하기](./airflow.md)
+- [데이터 불일치](./different_data.md)
+- [다국어 데이터 매핑 및 처리량 증가 문제](./i18n_mapping.md)
+- [다국어 원천 데이터의 신뢰도 문제](./untranslated_data.md)
+- [Data Dump 자동화 설정](./data_dump.md)
+- [시스템 Health Check 구축](./health_check.md)
+- [아이템 상세 페이지 성능 튜닝 후기](./item_detail.md)
 
-# 🐹 시스템 Health Check 구축
+# 시스템 Health Check 구축
 
 2025년 5월 22일, 외부에서 서버로의 접속이 단절되는 문제가 발생하였습니다.
 
@@ -30,9 +30,9 @@
 - 내부 시스템 Health Check - 신규 기능
 - 외부 접속 상태 Health Check - 신규 기능
 
-> Airflow 3.1.3 기준으로 내용 수정
+> Airflow 3.1.5 기준으로 내용 수정
 
-# ✅ DB Data Dump 후 이메일 전송 기능 개선
+# DB Data Dump 후 이메일 전송 기능 개선
 
 기존에는 DB Data Dump 후 4일이 지나면 파일을 삭제하는 방식으로만 운영되고 있었습니다.
 
@@ -52,13 +52,13 @@
 
 ![스크린샷 2025-06-15 083945](https://github.com/user-attachments/assets/2d967165-eb7a-4903-9b28-69b85fbc4e16)
 
-## ✉️ 이메일 설정 방법
+## 이메일 설정 방법
 
 Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에서 airflow.cfg를 수정하라고 안내하지만,
 
 공식적으로는 권장되지 않는 방법이며, 설정 시 Warning 메시지도 발생합니다.
 
-✅ 올바른 설정 방법 (Airflow 권장 방식)
+올바른 설정 방법 (Airflow 권장 방식)
 
     1. Admin → Connections 메뉴 진입
     2. 새 Connection 생성
@@ -69,13 +69,13 @@ Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에�
 
 ![스크린샷 2025-05-26 오후 2 19 38](https://github.com/user-attachments/assets/8b4408b8-e66f-4ec9-86be-3bdda86761a0)
 
-## 📎 데이터 첨부하여 이메일 전송
+## 데이터 첨부하여 이메일 전송
 
 초기에는 설정이 올바른데도 불구하고 "Connection Refused" 에러가 지속적으로 발생했습니다.
 
 처음에는 방화벽이나 SMTP 설정 문제로 생각했지만, 실제 원인은 파일 용량으로 인한 전송 지연이었습니다.
 
-🔧 해결 방법
+해결 방법
 
     Data Dump → gzip으로 압축 → 이메일 전송
 
@@ -86,7 +86,7 @@ Airflow에서 이메일 기능을 설정할 때, 많은 블로그나 문서에�
 
 ![스크린샷 2025-05-26 오후 2 21 41](https://github.com/user-attachments/assets/43ffc4a8-9fdd-4305-ab55-d13a3901beb9)
 
-## ✅ DAG 결과 확인
+## DAG 결과 확인
 
 DAG 실행 결과, 의도한 대로 데이터가 정상적으로 Dump되고, 이메일로 전송된 후, 4일 뒤 삭제되는 전체 흐름이 정상적으로 작동함을 확인했습니다.
 
@@ -94,7 +94,7 @@ DAG 실행 결과, 의도한 대로 데이터가 정상적으로 Dump되고, 이
 
 ![스크린샷 2025-05-26 오후 2 24 26](https://github.com/user-attachments/assets/12e21b7b-5a6a-4509-bd76-54f5b3d1b7a3)
 
-# 🩺 내부 서비스 Health Check 구축
+# 내부 서비스 Health Check 구축
 
 이번 장애를 계기로, 내부 서비스의 상태를 주기적으로 점검할 수 있는 기능의 필요성을 절감했습니다.
 
@@ -212,7 +212,7 @@ echo "" >> "$LOG_FILE"
 
 </details>
 
-# 🌐 외부 접속 서비스 Health Check
+# 외부 접속 서비스 Health Check
 
 해결하려고 했던 문제 중 하나는, 외부에서 접속 가능한 서비스의 Health Check였습니다.
 

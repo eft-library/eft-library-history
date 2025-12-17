@@ -1,24 +1,24 @@
 # 📂 목록
 
-- 🎗️ [폐지된 커뮤니티 기능](./community.md)
-- 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
-- 👍 [로드맵 - 최고의 컨텐츠](./roadmap.md)
-- 🍱 [다국어 지원을 위하여](./i18n.md)
-- 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
-- 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
-- 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
-- 🛠️ [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
-- 🚀 [사이트 통계 대시보드 개발기](./dashboard.md)
+- [폐지된 커뮤니티 기능](./community.md)
+- [디자인 리뉴얼 이슈 및 요청](./design.md)
+- [로드맵 - 최고의 컨텐츠](./roadmap.md)
+- [다국어 지원을 위하여](./i18n.md)
+- [3D Map 도입 및 성능 개선 과정](./3dmap.md)
+- [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
+- [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
+- [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
+- [사이트 통계 대시보드 개발기](./dashboard.md)
 
 ---
 
-# 🎗️ 폐지된 커뮤니티 기능
+# 폐지된 커뮤니티 기능
 
 사용자 기능 추가와 함께 커뮤니티를 도입하자는 논의가 있었고, 실제로 짧은 기간 동안 운영되었던 커뮤니티 기능입니다.
 
 ---
 
-# 📄 게시글 기능
+# 게시글 기능
 
 ## 📌 주요 기능
 

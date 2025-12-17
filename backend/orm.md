@@ -1,10 +1,10 @@
 # 📂 목록
 
-- 🌐 [다국어 지원](./i18n_data.md)
-- 🛠️ [ORM 사용 (With SqlAlchemy)](./orm.md)
-- 🔐 [Google 로그인 도입기: 사용자 피드백으로 시작된 변화](./token_check.md)
+- [다국어 지원](./i18n_data.md)
+- [ORM 사용 (With SqlAlchemy)](./orm.md)
+- [Google 로그인 도입기: 사용자 피드백으로 시작된 변화](./token_check.md)
 
-# 🛠️ ORM 사용 (With SqlAlchemy)
+# ORM 사용 (With SqlAlchemy)
 
 이 프로젝트는 **FastAPI와 SQLAlchemy ORM을 처음으로 도입**하여 사용해본 프로젝트 입니다.
 
@@ -15,7 +15,7 @@ Java로 개발할 때에 JPA가 아닌 MyBatis를 주로 사용하면서 ORM을 
 > 점점 복잡한 쿼리의 경우에는 text -> execute로 가게 되었습니다...  
 > 그래도 간단한 경우에는 Model을 만들고 ORM을 적용해보려고 노력했습니다.
 
-## ✅ 관계형 조회: 외래키 기반 SubMenu 전체 조회
+## 관계형 조회: 외래키 기반 SubMenu 전체 조회
 
 ![스크린샷 2025-05-21 오전 8 24 56](https://github.com/user-attachments/assets/9bf67cb4-8fe0-44b2-a9f7-97cb1a2a25b2)
 
@@ -28,7 +28,7 @@ ORM에서 관계형 데이터를 쉽게 조회하는 방법을 몰랐지만,
 
 ![스크린샷 2025-05-21 오전 10 54 58](https://github.com/user-attachments/assets/2c8bda42-c1cc-4a40-86d3-68d83648e816)
 
-## 🔍 복합 정보 조회: 아이템 상세 및 연관 정보 일괄 조회
+## 복합 정보 조회: 아이템 상세 및 연관 정보 일괄 조회
 
 ![스크린샷 2025-05-21 오전 8 17 50](https://github.com/user-attachments/assets/533576f2-63e0-4c09-b49e-962769116f0d)
 

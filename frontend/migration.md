@@ -1,22 +1,22 @@
 # 📂 목록
 
-- 🎗️ [폐지된 커뮤니티 기능](./community.md)
-- 🎨 [디자인 리뉴얼 이슈 및 요청](./design.md)
-- 👍 [로드맵 - 최고의 컨텐츠](./roadmap.md)
-- 🍱 [다국어 지원을 위하여](./i18n.md)
-- 🗺️ [3D Map 도입 및 성능 개선 과정](./3dmap.md)
-- 📊 [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
-- 🔐 [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
-- 🛠️ [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
-- 🚀 [사이트 통계 대시보드 개발기](./dashboard.md)
+- [폐지된 커뮤니티 기능](./community.md)
+- [디자인 리뉴얼 이슈 및 요청](./design.md)
+- [로드맵 - 최고의 컨텐츠](./roadmap.md)
+- [다국어 지원을 위하여](./i18n.md)
+- [3D Map 도입 및 성능 개선 과정](./3dmap.md)
+- [Analytics, Search Console, AdSense 도입기 및 경험 공유](./google.md)
+- [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
+- [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
+- [사이트 통계 대시보드 개발기](./dashboard.md)
 
 ---
 
-# 🛠️ 프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정
+# 프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정
 
 ---
 
-## 🚀 1차 개발 (React 17 기반 SPA)
+## 1차 개발 (React 17 기반 SPA)
 
 **기간:** 2024.03.28 ~ 2024.07.13  
 **기술 스택:** React 17, JavaScript
@@ -27,7 +27,7 @@
 
 ---
 
-## 🔄 2차 마이그레이션 (Next.js 14 + TypeScript)
+## 2차 마이그레이션 (Next.js 14 + TypeScript)
 
 **기간:** 2024.07.13 ~ 2024.12.30  
 **기술 스택:** Next.js 14 (App Router), TypeScript, SSG
@@ -36,7 +36,7 @@
 - 서버 사양도 좋지 않았기에 CSR 방식은 비효율적이라 판단하고, **SSG(Static Site Generation)**을 적용하기 위해 Next.js 14로 마이그레이션을 진행했습니다.
 - 많은 페이지가 단순히 조회되는 용도였기에, **사전 렌더링 후 캐싱을 통해 빠르게 제공하는 SSG 방식이 적합하다고 판단**했습니다.
 
-### 🧱 기술적 도전
+### 기술적 도전
 
 - 기존에 사용하던 `<img>` 태그도 `next/image`로 교체하면서 **크기 지정, lazy loading 등 최적화 작업**을 병행해야 했습니다.
 - `server` 컴포넌트 하위에 `client` 컴포넌트는 둘 수 있지만 그 반대가 안 된다는 제약 때문에 구조 설계에 꽤나 고민이 필요했습니다.
@@ -189,7 +189,7 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
 
 </details>
 
-### 📉 후일담
+### 후일담
 
 - SEO 개선을 위해 SSG 방식으로 구축했지만, 실제로는 대부분의 화면이 CSR 방식으로 렌더링되고 있다는 것을 나중에야 알게 됐습니다.
 - `LightHouse` 점수는 좋아졌지만, **사용자 입장에서 SSG의 체감 효과는 크지 않았고**, SSG 설계가 제대로 되지 않았다는 것을 3차 마이그레이션에서 알게 되었습니다.
@@ -201,7 +201,7 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
 
 ---
 
-## 🔁 3차 마이그레이션 (React 19 + Next.js 15 + 패키지 최신화)
+## 3차 마이그레이션 (React 19 + Next.js 15 + 패키지 최신화)
 
 **기간:** 2024.12.30 ~ 현재  
 **기술 스택:** React 19, Next.js 15, 최신 라이브러리 전체 업데이트
@@ -212,18 +212,13 @@ export const useItemFilter = (mapItem: JpgItemPath[]) => {
   - `useEffect`로 데이터를 fetch하거나 동적으로 import한 부분들이 많았습니다.
   - Client Side와 Server Side를 제대로 구분하여 설계하지 않았습니다.
 
-### ⚠️ 현재의 이슈
-
-- 전역 상태 관리를 위해 사용 중인 `zustand`가 아직 React 19를 정식으로 지원하지 않아, 개발 중 콘솔에 warning이 출력되고 있습니다.
-- 사용하는데 큰 문제는 없어 라이브러리를 변경할 생각은 없고, 빨리 업데이트가 되길 기다리고 있습니다.
-
 **build 정보**
 
 ![스크린샷 2025-06-16 오전 8 10 18](https://github.com/user-attachments/assets/0c76885b-b1e5-45e2-a798-7cd7590494b5)
 
 ---
 
-## 🧭 회고
+## 회고
 
 | 마이그레이션  | 주요 이유                   | 성과                                         | 한계/이슈                               |
 | ------------- | --------------------------- | -------------------------------------------- | --------------------------------------- |
