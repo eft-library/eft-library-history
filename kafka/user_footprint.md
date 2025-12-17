@@ -18,9 +18,9 @@ A[사용자 A 페이지 접속] --> B[FastAPI 로 A 페이지 데이터 조회 �
 
 간단합니다. Publish할 때 Data 규격만 통일하면 수월하게 사용할 수 있습니다.
 
-## 사용자 방문 통계 Table
+## 사용자 방문 통계 테이블
 
-사용자 방문 통계 Table 정보입니다.  
+사용자 방문 통계 테이블 정보입니다.  
 사용자 흔적이라는 의미에서 user_footprint로 만들었습니다. ㅎㅎ ~~만들고 보니 어색합니다.~~
 
 초기에는 IP도 수집을 하고 싶었는데, Nginx Proxy Manager와 CloudFlare를 거쳐서 들어오다 보니 전부 통일이 되어서 포기했습니다.
@@ -44,7 +44,7 @@ COMMENT ON COLUMN USER_FOOTPRINT.EXECUTE_TIME IS '적재 시간';
 ## Code 작성
 
 Front는 수정사항이 없습니다. Back에서 Middleware를 사용하여 중간 과정을 넣는 것이기 때문입니다.   
-Table의 규격에 맞게 보내면 나머지는 Consumer에서 처리합니다.
+테이블의 규격에 맞게 보내면 나머지는 Consumer에서 처리합니다.
 
 ### Backend Code
 
