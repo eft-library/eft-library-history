@@ -36,6 +36,15 @@
    - 랜덤 아이템들 50 개
      - 사진에 금액 표시
 
+**메인**
+
+<img width="1629" height="974" alt="스크린샷 2026-01-28 오후 1 27 08" src="https://github.com/user-attachments/assets/6849d8b1-ae59-4aa1-8e81-96ced64f4a8a" />
+
+**사용법 예시**
+
+<img width="916" height="828" alt="스크린샷 2026-01-28 오후 1 58 55" src="https://github.com/user-attachments/assets/0d61e02e-5eee-4088-aa19-5633a74fc84b" />
+
+
 ### 기능 설계
 
 1. 드래그로 아이템 옮기기, 드래그 후 R 눌러서 아이템 회전
@@ -70,6 +79,11 @@
 3. 게암플레이 후에는, 결과 점수를 계산하여 TOP 1 ~ 3, 내 점수 위 3, 내 점수, 내 점수 아래 3 을 표시함
 4. 닉네임을 입력 받아서 저장
 
+**랭킹**
+
+<img width="538" height="769" alt="스크린샷 2026-01-28 오후 1 59 44" src="https://github.com/user-attachments/assets/234c2e5a-224d-410a-8303-93e067e69099" />
+
+
 ## 프로세스
 
 1. 30초가 끝나면 알림을 주며 게임 종료
@@ -85,4 +99,10 @@
 
 ## 화면
 
-열심히 만들었는데 많이 사용해주면 좋을 것 같습니다.
+열심히 만들었는데 많이 사용해주길 기대하고 있습니다.
+
+**게임 종료**
+
+<img width="1569" height="955" alt="스크린샷 2026-01-28 오후 1 59 39" src="https://github.com/user-attachments/assets/6a0ea926-2579-4c95-8a1c-f659779d30eb" />
+
+
