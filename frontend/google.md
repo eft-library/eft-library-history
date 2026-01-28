@@ -9,6 +9,7 @@
 - [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
 - [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
 - [사이트 통계 대시보드 개발기](./dashboard.md)
+- [미니게임 - 칸성비 운빨 망겜 개발기](./minigame-rng-item.md)
 
 ---
 
@@ -16,7 +17,7 @@
 
 ## Google Analytics 도입
 
-- **도입 난이도**: 매우 쉬움 
+- **도입 난이도**: 매우 쉬움
 - 생성된 추적 코드를 받아서 [`@next/third-parties`](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-scripts) 라이브러리를 사용하여 간단히 적용 가능합니다.
 - 별다른 이슈 없이 **바로 적용 및 데이터 수집 성공** 했습니다.
 
@@ -91,6 +92,6 @@ TagError: adsbygoogle.push() error: No slot size for availableWidth=0
 
 | 항목           | 도입 성공 여부 | 주요 문제                       | 현재 상태          |
 | -------------- | -------------- | ------------------------------- | ------------------ |
-| Analytics      | 적용 완료   | 없음                            | 안정 운영 중       |
-| AdSense        | 적용 완료   | 수익 저조, 경고 메시지 발생     | 임시 해결, 보류 중 |
-| Search Console | 적용 완료   | 색인 누락, 불필요한 페이지 색인 | 개선 중, 해결 미완 |
+| Analytics      | 적용 완료      | 없음                            | 안정 운영 중       |
+| AdSense        | 적용 완료      | 수익 저조, 경고 메시지 발생     | 임시 해결, 보류 중 |
+| Search Console | 적용 완료      | 색인 누락, 불필요한 페이지 색인 | 개선 중, 해결 미완 |

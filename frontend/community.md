@@ -9,6 +9,7 @@
 - [NextAuth 도입기 – 프론트 중심 인증 경험](./auth.md)
 - [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./migration.md)
 - [사이트 통계 대시보드 개발기](./dashboard.md)
+- [미니게임 - 칸성비 운빨 망겜 개발기](./minigame-rng-item.md)
 
 ---
 
@@ -218,7 +219,7 @@ const reportPost = async () => {
       USER_API_ENDPOINTS.REPORT_POST,
       "POST",
       { board_id: post.id, board_type: post.type, reason: finalReason },
-      session
+      session,
     );
     if (response.status === 200) {
       alert("해당 게시글이 신고되었습니다.");

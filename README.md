@@ -15,6 +15,7 @@
   - [NextAuth 도입기 – 프론트 중심 인증 경험](./frontend/auth.md)
   - [프론트엔드 개발 비하인드 – 3번의 마이그레이션 여정](./frontend/migration.md)
   - [사이트 통계 대시보드 개발기](./frontend/dashboard.md)
+  - [미니게임 - 칸성비 운빨 망겜 개발기](./frontend/minigame-rng-item.md)
 - [API 개발 (Backend)](./backend/README.md)
   - [다국어 지원](./backend/i18n_data.md)
   - [ORM 사용 (With SqlAlchemy)](./backend/orm.md)
