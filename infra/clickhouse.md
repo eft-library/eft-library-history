@@ -4,6 +4,7 @@
 - [ClickHouse 구축하기](./clickhouse.md)
 - [Redis 구축하기](./reids.md)
 - [사용자 알림 및 실시간 데이터 처리](./user_noti.md)
+- [Disk Full - Clickhouse 제거](./disk_full.md)
 
 # ClickHouse 구축하기
 
@@ -16,6 +17,7 @@ Kafka를 활용해 페이지 방문 히스토리를 수집하면서 처음에는
 > Version: 25.11.2.24
 
 ## 구축 과정
+
 ```shell
 # RPM 설정
 sudo yum install -y yum-utils
@@ -32,7 +34,7 @@ sudo systemctl status clickhouse-server
 # 결과 확인
 clickhouse-client
 
-# 포트 및 외부 접속 허용 - 나올때는 w! 
+# 포트 및 외부 접속 허용 - 나올때는 w!
 sudo vi /etc/clickhouse-server/config.xml
 tcp port 9000 => 9232
 <listen_host>::</listen_host>

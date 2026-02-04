@@ -4,6 +4,7 @@
 - [ClickHouse 구축하기](./clickhouse.md)
 - [Redis 구축하기](./reids.md)
 - [사용자 알림 및 실시간 데이터 처리](./user_noti.md)
+- [Disk Full - Clickhouse 제거](./disk_full.md)
 
 # Redis 구축하기
 
@@ -40,4 +41,3 @@ sudo systemctl enable --now redis
 # 확인
 redis-server --version
 ```
-

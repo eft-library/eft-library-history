@@ -4,6 +4,7 @@
 - [ClickHouse 구축하기](./clickhouse.md)
 - [Redis 구축하기](./reids.md)
 - [사용자 알림 및 실시간 데이터 처리](./user_noti.md)
+- [Disk Full - Clickhouse 제거](./disk_full.md)
 
 # Minio 구축하기
 
@@ -13,7 +14,7 @@
 
 # 특이사항
 
-구버전은 상관 없는데, 최신 버전은 UI에서 할 수 있는 기능이 상당히 한정적으로 변하였습니다.          
+구버전은 상관 없는데, 최신 버전은 UI에서 할 수 있는 기능이 상당히 한정적으로 변하였습니다.  
 S3와 다르게 관리형 스토리지는 단일 root 관리자를 기본으로 목표로 하기 때문입니다.
 
 1. User 생성
@@ -27,6 +28,7 @@ S3와 다르게 관리형 스토리지는 단일 root 관리자를 기본으로 
 그럼 시작해봅시다.
 
 ## 바이너리 다운로드
+
 ```shell
 wget https://dl.min.io/server/minio/release/linux-amd64/minio
 sudo mv minio /usr/local/bin/
@@ -34,6 +36,7 @@ sudo chmod +x /usr/local/bin/minio
 ```
 
 ## 데이터 저장 디렉토리 및 환경변수 파일 생성
+
 ```shell
 sudo mkdir -p /data/minio
 sudo mkdir -p /etc/minio
@@ -95,11 +98,12 @@ sudo systemctl status minio
 
 # 중요: 버킷 설정 변경 하기
 
-저는 누구나 사진을 볼 수 있어야 하기에 Bucket을 Public으로 만들어야 했는데,         
-생성시에는 자동으로 Private이 되고, 수정할 수 있는 버튼이 없었습니다.       
+저는 누구나 사진을 볼 수 있어야 하기에 Bucket을 Public으로 만들어야 했는데,  
+생성시에는 자동으로 Private이 되고, 수정할 수 있는 버튼이 없었습니다.  
 그래서 minio client를 받아서 적용해주었습니다.
 
 ## mc 사용
+
 ```shell
 # mc 다운로드 및 권한 부여
 wget https://dl.min.io/client/mc/release/linux-amd64/mc
@@ -160,4 +164,3 @@ EOF
 기존에는 Access Key, Secret Key를 사용하여서 했는데 이제는 사라졌고 로그인 시 사용하는 아이디와 패스워드를 사용하면 됩니다.
 
 아직 패키지는 변경된 것 같지 않은데, Access Key 에 아이디를 넣고, Secret Key에 Password를 넣으면 됩니다.
-
