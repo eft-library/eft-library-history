@@ -11,10 +11,13 @@
 지금도 404로 가서 문제 없지만, 그래도 요청을 막는게 좋을 것 같아 로직을 추가했습니다.
 
 **FastAPI의 env 정보를 가져가려는 모습**
+<img width="618" height="22" alt="스크린샷 2026-02-04 오전 9 59 23" src="https://github.com/user-attachments/assets/3c6fe83d-f578-487e-9466-23ab9d1e04ea" />
 
 **Wordpress인 줄 알고 정보를 가져가려는 모습**
+<img width="926" height="357" alt="스크린샷 2026-02-04 오전 9 59 44" src="https://github.com/user-attachments/assets/b840a5ed-63c4-4ea8-b614-97685fe1eaab" />
 
 **CMS / PHP / JSP 취약 파일 스캔**
+<img width="1202" height="250" alt="스크린샷 2026-02-04 오전 10 07 33" src="https://github.com/user-attachments/assets/c67ec2d0-a8f2-4a82-8d04-242c95bbb411" />
 
 ## .env 요청
 
