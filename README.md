@@ -20,6 +20,7 @@
   - [다국어 지원](./backend/i18n_data.md)
   - [ORM 사용 (With SqlAlchemy)](./backend/orm.md)
   - [Google 로그인 도입기: 사용자 피드백으로 시작된 변화](./backend/token_check.md)
+  - [사이트 공격 대비](./backend/defence.md)
 - [실시간 데이터 처리 (Kafka)](./kafka/README.md)
   - [Kafka 환경 구축](./kafka/kafka_system_development.md)
   - [사용자 방문 통계](./kafka/user_footprint.md)
