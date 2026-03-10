@@ -26,7 +26,7 @@
       }
 
       .diagram-wrapper {
-        width: 900px;
+        width: 1100px;
         position: relative;
       }
 
@@ -622,6 +622,251 @@
         top: 50%;
         transform: translateY(-50%);
       }
+      /* LLM Server external box */
+      .llm-server-wrapper {
+        margin-top: 24px;
+        position: relative;
+      }
+
+      .llm-connector-line {
+        display: flex;
+        justify-content: center;
+        margin: 0 0 0;
+        position: relative;
+      }
+
+      .llm-connector-line::before {
+        content: "MCP · fastmcp";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        color: #a78bfa;
+        letter-spacing: 1.5px;
+        background: #f0f4fa;
+        padding: 0 8px;
+        z-index: 1;
+      }
+
+      .llm-box {
+        background: linear-gradient(
+          145deg,
+          rgba(109, 40, 217, 0.04),
+          rgba(139, 92, 246, 0.02)
+        );
+        border: 1.5px solid rgba(139, 92, 246, 0.28);
+        border-radius: 20px;
+        padding: 24px 28px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(109, 40, 217, 0.07);
+      }
+
+      .llm-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(139, 92, 246, 0.5),
+          rgba(167, 139, 250, 0.6),
+          rgba(139, 92, 246, 0.5),
+          transparent
+        );
+      }
+
+      .llm-box::after {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .llm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .llm-os-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(
+          145deg,
+          rgba(139, 92, 246, 0.08),
+          rgba(139, 92, 246, 0.03)
+        );
+        border: 1.5px solid rgba(139, 92, 246, 0.25);
+        border-radius: 8px;
+        padding: 6px 14px;
+      }
+
+      .llm-os-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: #8b5cf6;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+
+      .llm-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .llm-card {
+        background: #faf8ff;
+        border: 1px solid rgba(139, 92, 246, 0.18);
+        border-radius: 12px;
+        padding: 16px 14px;
+        text-align: center;
+        position: relative;
+        transition: all 0.25s ease;
+        cursor: default;
+        overflow: hidden;
+      }
+
+      .llm-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        border-radius: 2px 2px 0 0;
+        background: var(--llm-accent, #8b5cf6);
+        opacity: 0.5;
+      }
+
+      .llm-card:hover {
+        background: #f5f0ff;
+        border-color: rgba(139, 92, 246, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(109, 40, 217, 0.1);
+      }
+
+      .llm-card-icon {
+        font-size: 26px;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .llm-card-name {
+        font-weight: 700;
+        font-size: 13px;
+        color: #2a1a4a;
+        letter-spacing: 0.3px;
+        margin-bottom: 3px;
+      }
+
+      .llm-card-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        color: var(--llm-accent, #8b5cf6);
+        opacity: 0.75;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .llm-card-detail {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        color: #9a8ab8;
+        margin-top: 5px;
+        letter-spacing: 0.3px;
+        line-height: 1.5;
+      }
+
+      .llm-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(139, 92, 246, 0.1);
+      }
+
+      .llm-spec-pill {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9.5px;
+        color: #7c5abf;
+        background: rgba(139, 92, 246, 0.07);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: 6px;
+        padding: 3px 10px;
+        letter-spacing: 0.5px;
+      }
+
+      .llm-spec-pill span {
+        color: #4a2a9a;
+        font-weight: 600;
+      }
+
+      /* Animated dashed line between main server and LLM server */
+      .mcp-link-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 36px;
+        position: relative;
+        gap: 0;
+      }
+
+      .mcp-link-line {
+        width: 1px;
+        height: 100%;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(139, 92, 246, 0.5) 0px,
+          rgba(139, 92, 246, 0.5) 5px,
+          transparent 5px,
+          transparent 10px
+        );
+        position: relative;
+        animation: dashDown 1s linear infinite;
+      }
+
+      @keyframes dashDown {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 0 20px;
+        }
+      }
+
+      .mcp-link-label {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        color: #8b5cf6;
+        background: #f0f4fa;
+        padding: 2px 10px;
+        border-radius: 4px;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+        z-index: 2;
+      }
     </style>
   </head>
   <body>
@@ -785,7 +1030,7 @@
                   alt="Nginx Proxy Manager"
                 />
                 <div>
-                  <div class="service-name">Nginx Proxy</div>
+                  <div class="service-name">Nginx Proxy Manager</div>
                   <div class="service-tag">REVERSE PROXY</div>
                 </div>
               </div>
@@ -822,7 +1067,7 @@
                     alt="Next.js"
                     style="width: 80px; height: 32px"
                   />
-                  <div class="node-sub">Frontend · SSR · App Router</div>
+                  <div class="node-sub">Frontend · ISR · App Router</div>
                 </div>
               </div>
             </div>
@@ -912,6 +1157,235 @@
         </div>
       </div>
 
+      <!-- MCP connection line + label -->
+      <div class="mcp-link-container" style="margin-top: 14px">
+        <div class="mcp-link-line"></div>
+        <div class="mcp-link-label">fastMCP · HTTP/SSE</div>
+      </div>
+
+      <!-- LLM Server Box -->
+      <div class="llm-box" style="margin-top: 0">
+        <div class="llm-header">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div class="llm-os-badge">
+              <span style="font-size: 15px">🤖</span>
+              <span class="llm-os-text">LLM SERVER</span>
+            </div>
+            <div
+              style="
+                font-family: &quot;JetBrains Mono&quot;, monospace;
+                font-size: 10px;
+                color: #9a8ab8;
+                letter-spacing: 1px;
+              "
+            >
+              EXTERNAL · LOCAL NETWORK
+            </div>
+          </div>
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 10px;
+              color: #9a8ab8;
+              text-align: right;
+              line-height: 1.8;
+            "
+          >
+            VRAM
+            <span style="color: #6d28d9; font-weight: 600"
+              >RTX 3060 Ti / 8GB</span
+            ><br />
+            RAM <span style="color: #6d28d9; font-weight: 600">DDR4 16GB</span
+            ><br />
+            CPU
+            <span style="color: #6d28d9; font-weight: 600"
+              >i5-12400F · 6C/12T</span
+            >
+          </div>
+        </div>
+
+        <div class="llm-grid">
+          <!-- Ollama -->
+          <div class="llm-card" style="--llm-accent: #6d28d9">
+            <img
+              src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/ollama.png"
+              style="
+                width: 32px;
+                height: 32px;
+                object-fit: contain;
+                margin-bottom: 8px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+              alt="Ollama"
+            />
+            <div class="llm-card-name">Ollama</div>
+            <div class="llm-card-tag">LLM RUNTIME</div>
+            <div class="llm-card-detail">v0.17.6<br />REST API</div>
+          </div>
+
+          <!-- Qwen model -->
+          <div class="llm-card" style="--llm-accent: #7c3aed">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              style="display: block; margin: 0 auto 8px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="6"
+                width="28"
+                height="4"
+                rx="2"
+                fill="#7c3aed"
+                opacity="0.85"
+              />
+              <rect
+                x="2"
+                y="14"
+                width="20"
+                height="4"
+                rx="2"
+                fill="#7c3aed"
+                opacity="0.6"
+              />
+              <rect
+                x="2"
+                y="22"
+                width="24"
+                height="4"
+                rx="2"
+                fill="#7c3aed"
+                opacity="0.4"
+              />
+              <circle cx="27" cy="24" r="4" fill="#a855f7" />
+              <path
+                d="M25.5 24l1.2 1.2 2.3-2.4"
+                stroke="white"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <div class="llm-card-name">Qwen3.5 4B</div>
+            <div class="llm-card-tag">LANGUAGE MODEL</div>
+            <div class="llm-card-detail">no_think mode<br />4B params</div>
+          </div>
+
+          <!-- BGE-M3 embedding -->
+          <div class="llm-card" style="--llm-accent: #9333ea">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              style="display: block; margin: 0 auto 8px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- document -->
+              <rect
+                x="5"
+                y="3"
+                width="16"
+                height="20"
+                rx="2"
+                fill="#f5f0ff"
+                stroke="#9333ea"
+                stroke-width="1.5"
+              />
+              <line
+                x1="9"
+                y1="8"
+                x2="17"
+                y2="8"
+                stroke="#9333ea"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <line
+                x1="9"
+                y1="12"
+                x2="17"
+                y2="12"
+                stroke="#9333ea"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <line
+                x1="9"
+                y1="16"
+                x2="14"
+                y2="16"
+                stroke="#9333ea"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <!-- vector dots -->
+              <circle cx="23" cy="20" r="4" fill="#9333ea" />
+              <circle cx="23" cy="20" r="2" fill="white" />
+              <line
+                x1="19.5"
+                y1="23"
+                x2="23"
+                y2="20"
+                stroke="#9333ea"
+                stroke-width="1.2"
+              />
+              <line
+                x1="26.5"
+                y1="23"
+                x2="23"
+                y2="20"
+                stroke="#9333ea"
+                stroke-width="1.2"
+              />
+              <line
+                x1="23"
+                y1="16.2"
+                x2="23"
+                y2="20"
+                stroke="#9333ea"
+                stroke-width="1.2"
+              />
+            </svg>
+            <div class="llm-card-name">bge-m3</div>
+            <div class="llm-card-tag">EMBEDDING MODEL</div>
+            <div class="llm-card-detail">multilingual<br />dense + sparse</div>
+          </div>
+
+          <!-- fastMCP -->
+          <div class="llm-card" style="--llm-accent: #a855f7">
+            <img
+              src="https://fastmcp.me/img/fastmcp-logo-for-white-bg.svg"
+              style="
+                width: 64px;
+                height: 32px;
+                object-fit: contain;
+                display: block;
+                margin: 0 auto 8px;
+              "
+              alt="fastMCP"
+            />
+            <div class="llm-card-name">fastMCP</div>
+            <div class="llm-card-tag">MCP SERVER</div>
+            <div class="llm-card-detail">Model Context<br />Protocol</div>
+          </div>
+        </div>
+
+        <div class="llm-specs">
+          <div class="llm-spec-pill">Ubuntu 22.04</div>
+          <div class="llm-spec-pill">Ollama <span>0.17.6</span></div>
+          <div class="llm-spec-pill">CUDA <span>13.1</span></div>
+          <div class="llm-spec-pill">Qwen3.5 <span>4B no_think</span></div>
+          <div class="llm-spec-pill">bge-m3 <span>embedding</span></div>
+          <div class="llm-spec-pill">fastMCP <span>SSE/stdio</span></div>
+        </div>
+      </div>
+
       <div
         style="
           display: flex;
@@ -997,6 +1471,27 @@
             "
           ></div>
           SERVICE
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: &quot;JetBrains Mono&quot;, monospace;
+            font-size: 10px;
+            color: #8a9ab8;
+          "
+        >
+          <div
+            style="
+              width: 8px;
+              height: 8px;
+              border-radius: 2px;
+              background: rgba(139, 92, 246, 0.1);
+              border: 1px solid rgba(139, 92, 246, 0.35);
+            "
+          ></div>
+          LLM SERVER
         </div>
       </div>
     </div>
